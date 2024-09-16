@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
+      @font-face {
+        font-family: 'Lato';
+        src: url('./assets/font/Lato/Lato-Regular.ttf') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
         body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+          font-family: 'Lato', sans-serif;
         }
         #backgroundVideo {
           position: fixed;
@@ -42,11 +48,16 @@
           width: 406px;
           height: 54px;
           font-size: 18px;
-          border: 1px solid #ccc;
-          border-radius: 8px;
+          border: 1px solid white;
+          border-radius: 12px;
           outline: none;
           flex: 1;
-          padding-left: 16px;
+          padding-left: 12px;
+          font-family: 'Lato', sans-serif;
+        }
+        input[type="email"]::placeholder {
+          color: black;
+          opacity: .3;
         }
         button {
           width: 108px;
@@ -61,6 +72,7 @@
           border-radius: 8px;
           cursor: pointer;
           outline: none;
+          font-family: 'Lato', sans-serif;
         }
         img#logo {
           position: fixed;
@@ -98,8 +110,6 @@
             form {
               margin: 0 20px;
             }
-            input[type="email"] {
-            }
         }
     </style>
 </head>
@@ -110,7 +120,9 @@
     </video>
     <div id="content">
       <img src="assets/arttoo.png" id="logo" alt="">
-      <img src="assets/x.png" id="x" alt="">
+      <a href="https://x.com/arttoonetwork" target="_blank">
+        <img src="assets/x.png" id="x" alt="">
+      </a>
       <form id="emailForm">
           <input type="email" id="email" name="email" placeholder="Enter your email address" required>
           <button type="submit">Join Waitlist</button>
