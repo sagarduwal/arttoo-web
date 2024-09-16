@@ -28,6 +28,6 @@ export class EmailService {
     }
 
     // Append the email to the file
-    // fs.appendFileSync(this.filePath, `${email}\n`);
+    fs.appendFileSync(this.filePath, `${email}\n`);
   }
 }
