@@ -1,4 +1,4 @@
-import { Controller, Post, Body, BadRequestException, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { EmailService } from './email.service';
 
 @Controller('email')
@@ -11,10 +11,7 @@ export class EmailController {
       await this.emailService.registerEmail(email);
       return 'Email registered successfully!';
     } catch (error) {
-      if (error instanceof BadRequestException) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      }
-      throw new HttpException('Internal Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw error;
     }
   }
 }
