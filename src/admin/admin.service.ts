@@ -5,7 +5,7 @@ import * as path from 'path';
 @Injectable()
 export class AdminService {
   private readonly filePath = path.join(__dirname, '..', '..', 'emails.txt');
-  private readonly adminPassword = '12345'; // 你的管理员密码
+  private readonly adminPassword = 'arttooemail'; // 你的管理员密码
 
   private validatePassword(password: string): boolean {
     return password === this.adminPassword;
