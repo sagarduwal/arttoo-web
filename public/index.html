@@ -28,7 +28,6 @@
           min-height: 100%;
           transform: translate(-50%, -50%);
           object-fit: cover; /* 保持视频比例 */
-          z-index: -1;
           background-size: cover;
         }
         #content {
@@ -114,7 +113,7 @@
     </style>
 </head>
 <body>
-    <video id="backgroundVideo" autoplay muted loop>
+    <video id="backgroundVideo" src="assets/video.mp4" playsinline autoplay muted loop>
         <source src="assets/video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
