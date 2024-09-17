@@ -81,7 +81,7 @@
                 }
 
                 const emails = await response.text();
-                document.getElementById('emails').innerText = emails;
+                document.getElementById('emails').innerText = emails.split(',');
             } catch (error) {
                 alert('An error occurred. Please try again later.');
             }

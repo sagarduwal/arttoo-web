@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { Logger } from '@nestjs/common';
 
@@ -10,12 +10,11 @@ export class EmailController {
 
   @Post('register')
   async register(@Body('email') email: string): Promise<string> {
-    try {
-      await this.emailService.registerEmail(email);
-      return 'Email registered successfully!';
-    } catch (error) {
-      this.logger.error(error);
-      throw error;
-    }
+    return this.emailService.registerEmail(email);
+  }
+
+  @Get()
+  async getAllEmails(): Promise<string[]> {
+    return this.emailService.getAllEmails();
   }
 }
