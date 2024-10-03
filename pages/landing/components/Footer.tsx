@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black">
+    <footer className="bg-black scroll-panel">
       <div className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-8 py-16">
         <h3 className="text-white md:text-[60px] text-[30px] leading-[39.3px] sm:text-[44px] sm:leading-[51.23px] font-medium md:leading-[78.6px]">
           Ready to Own <span className="italic">Your Piece of History?</span>

@@ -44,3 +44,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.scroll-panel{
+  position: sticky;
+  top:0;
+}
+
+.panel.video {
+  background-color: transparent;
+  color: white;
+}
+
+.panel.light {
+  background-color: white;
+  color: black;
+}

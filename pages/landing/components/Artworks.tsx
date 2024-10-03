@@ -38,10 +38,10 @@ const Artworks = () => {
   });
 
   return (
-    <section className="w-[90vw] mx-auto sm:w-[85vw] h-[90vh] overflow-clip  gap-16 panel">
+    <section className="w-[90vw] mx-auto sm:w-[85vw] overflow-clip  gap-16 scroll-panel light h-screen">
       <div
         id="animation-text"
-        className="flex justify-between flex-col md:flex-row gap-4"
+        className="flex justify-between flex-col md:flex-row gap-4 mt-60"
       >
         <h1 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px]">
           Art Is The Visual{" "}

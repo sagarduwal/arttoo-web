@@ -35,23 +35,22 @@ const Learn = () => {
       scrollTrigger: {
         trigger: "#video-section",
         scroller: "body",
-        start: "top bottom",
+        start: "top 80%",
         end: "bottom top",
         scrub: 3,
-        markers: true,
       },
     });
   });
   return (
     <section
       id="video-section"
-      className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col md:flex-row gap-12  md:gap-64 h-screen"
+      className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col md:flex-row gap-12  md:gap-64 h-screen scroll-panel justify-center"
     >
       <video ref={videoRef} src="/steps.mp4" muted className="max-w-[720px]" />
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 justify-center">
         {Steps.map((item, index) => {
           return (
-            <div key={index} className="flex gap-4 max-w-[800px] ">
+            <div key={index} className="flex gap-4 max-w-[800px]">
               <span className="text-black/30 text-[40px] italic leading-[52.4px] mt-4">{`0${
                 index + 1
               }`}</span>

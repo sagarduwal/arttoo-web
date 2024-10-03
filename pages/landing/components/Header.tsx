@@ -55,8 +55,14 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-[90vw] sm:w-[85vw] py-8 mx-auto h-fit absolute z-10 left-1/2 -translate-x-1/2">
-        <div id="nav-container" className="flex justify-between z-10 ">
+      <header
+        id="header"
+        className=" h-fit fixed top-0 z-10 left-1/2 -translate-x-1/2  w-full"
+      >
+        <div
+          id="nav-container"
+          className="flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto"
+        >
           <Image src={ArttooLogo} alt="logo" className="w-[160px] opacity-0" />
 
           <button

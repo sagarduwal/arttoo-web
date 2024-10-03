@@ -3,8 +3,10 @@ import Header from "./Header";
 
 const Hero = () => {
   return (
-    <div className=" flex flex-col w-screen h-screen panel n">
-      <Header />
+    <section
+      id="hero"
+      className=" flex flex-col w-screen h-screen scroll-panel video"
+    >
       <video
         src="/hero.mp4"
         autoPlay
@@ -13,7 +15,7 @@ const Hero = () => {
         playsInline
         className="h-full w-full object-cover"
       />
-    </div>
+    </section>
   );
 };
 

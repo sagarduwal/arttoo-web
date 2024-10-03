@@ -1,29 +1,20 @@
 "use client";
-
-import React, { useRef, useState } from "react";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";
-import About from "./components/About";
-import Learn from "./components/Learn";
-import Artworks from "./components/Artworks";
-
-import { useGSAP } from "@gsap/react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import Header from "./components/Header";
-import { ArttooLogoBlack } from "@/assets/images";
+import { useGSAP } from "@gsap/react";
+import "./style.css";
 
-gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const LandingPage = () => {
+export default function Layers(): JSX.Element {
   const main = useRef<HTMLElement>(null);
   const scrollTween = useRef<gsap.core.Tween | null>(null);
   const snapTriggers = useRef<ScrollTrigger[]>([]);
   const { contextSafe } = useGSAP(
     () => {
-      let panels = gsap.utils.toArray<Element>(".scroll-panel");
+      let panels = gsap.utils.toArray<Element>(".panel");
       let scrollStarts: number[] = [0];
       let snapScroll: (value: number, direction?: number) => number = (value) =>
         value;
@@ -79,42 +70,21 @@ const LandingPage = () => {
     }
   });
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#hero",
-        scroller: "body",
-        start: "top top",
-        scrub: 1,
-        markers: true,
-      },
-    });
-
-    tl.to("header", {
-      color: "black",
-    });
-    tl.to(
-      "#nav-container div a",
-      {
-        color: "black",
-      },
-      "-=0.5"
-    );
-    tl.to("#nav-container img", {
-      filter: "invert(100%)",
-    });
-  });
-
   return (
-    <main ref={main} className="flex flex-col overflow-x-hidden ">
-      <Header />
-      <Hero />
-      <Artworks />
-      <Learn />
-      <About />
-      <Footer />
+    <main ref={main}>
+      <section className="description panel light">
+        <div>
+          <h1>Layered pinning</h1>
+          <p>Use pinning to layer panels on top of each other as you scroll.</p>
+          <div className="scroll-down">
+            Scroll down<div className="arrow"></div>
+          </div>
+        </div>
+      </section>
+      <section className="panel dark">ONE</section>
+      <section className="panel purple">TWO</section>
+      <section className="panel orange">THREE</section>
+      <section className="panel red">FOUR</section>
     </main>
   );
-};
-
-export default LandingPage;
+}
