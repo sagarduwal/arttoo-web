@@ -38,7 +38,10 @@ const Artworks = () => {
   });
 
   return (
-    <section className="w-[90vw] mx-auto sm:w-[85vw] overflow-clip  gap-16 scroll-panel light h-screen">
+    <section
+      id="artworks"
+      className="w-[90vw] mx-auto sm:w-[85vw] overflow-clip  gap-16 scroll-panel light h-screen"
+    >
       <div
         id="animation-text"
         className="flex justify-between flex-col md:flex-row gap-4 mt-60"
