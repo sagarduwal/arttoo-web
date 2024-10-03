@@ -1,10 +1,9 @@
 "use client";
-import React, { useRef } from "react";
-import Image from "next/image";
 import { ArtworkImage } from "@/assets/images";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);

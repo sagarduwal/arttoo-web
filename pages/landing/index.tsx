@@ -6,13 +6,6 @@ import About from "./components/About";
 import Learn from "./components/Learn";
 import Artworks from "./components/Artworks";
 
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
-
 const LandingPage = () => {
   const main = useRef<HTMLDivElement | null>(null);
   return (
