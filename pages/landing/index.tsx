@@ -1,21 +1,13 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer";
+import { useRef } from "react";
 import About from "./components/About";
-import Learn from "./components/Learn";
 import Artworks from "./components/Artworks";
-
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import Learn from "./components/Learn";
+import { useScroll } from "framer-motion";
 import Header from "./components/Header";
-import { ArttooLogoBlack } from "@/assets/images";
-import { useScroll, useTransform } from "framer-motion";
-
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
 
 const LandingPage = () => {
   const main = useRef<HTMLElement>(null);

@@ -1,13 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  MotionValue,
-} from "framer-motion";
+import { motion, MotionValue, useSpring, useTransform } from "framer-motion";
+import React from "react";
 
 export interface ContentItem {
   title: string;

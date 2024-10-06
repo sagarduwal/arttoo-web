@@ -1,7 +1,6 @@
-import React, { ForwardedRef, RefObject } from "react";
-import Header from "./Header";
+import React, { ForwardedRef } from "react";
 
-const Hero = React.forwardRef<HTMLElement, {}>(
+const Hero = React.forwardRef<HTMLElement>(
   (props, ref: ForwardedRef<HTMLElement>) => {
     return (
       <section
@@ -21,5 +20,7 @@ const Hero = React.forwardRef<HTMLElement, {}>(
     );
   }
 );
+
+Hero.displayName = "Hero";
 
 export default Hero;

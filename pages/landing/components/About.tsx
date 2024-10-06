@@ -1,12 +1,7 @@
 "use client";
 import { Axa, Dietl, Gurrjohns, Momart } from "@/assets/images";
-import Image from "next/image";
-import React from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-
-gsap.registerPlugin(useGSAP);
+import Image from "next/image";
 
 const aboutList = [
   {
@@ -35,33 +30,6 @@ const aboutList = [
 ];
 
 const About = () => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#about-section",
-      scroller: "body",
-      start: "top center",
-      end: "bottom center",
-    },
-  });
-  useGSAP(() => {
-    // tl.from("#about-section h2", {
-    //   y: 20,
-    //   opacity: 0,
-    //   duration: 0.5,
-    //   ease: "sine",
-    // });
-    tl.from(
-      "#about-content",
-      {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.3,
-      },
-      "-=0.4"
-    );
-  });
-
   return (
     <section
       id="about-section"
@@ -77,10 +45,9 @@ const About = () => {
       <div className="flex flex-wrap justify-between gap-12">
         {aboutList.map((item, index) => {
           return (
-            <FadeInUpwardAnimation delay={(index + 1) * 0.1}>
+            <FadeInUpwardAnimation key={index} delay={(index + 1) * 0.1}>
               <div
                 id="about-content"
-                key={index}
                 className="flex flex-col gap-4 max-w-[360px] "
               >
                 {item.img}

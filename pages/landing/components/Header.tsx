@@ -1,21 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import Image from "next/image";
-import { ArttooLogo, ArttooLogoBlack } from "@/assets/images";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { ArttooLogoBlack } from "@/assets/images";
 import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-import {
-  motion,
-  MotionValue,
-  useInView,
-  useTransform,
-  Variants,
-} from "framer-motion";
-
-gsap.registerPlugin(useGSAP);
+import { motion, MotionValue, useTransform } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect } from "react";
 
 const navlinks = [
   {
@@ -93,12 +83,11 @@ const Header = ({ progress }: { progress: MotionValue<number> }) => {
             {navlinks.map((link, index) => {
               return (
                 <FadeInUpwardAnimation
+                  key={index}
                   delay={(index + 1) * 0.05}
                   translateY={20}
                 >
-                  <Link key={index} href={link.link}>
-                    {link.title}
-                  </Link>
+                  <Link href={link.link}>{link.title}</Link>
                 </FadeInUpwardAnimation>
               );
             })}

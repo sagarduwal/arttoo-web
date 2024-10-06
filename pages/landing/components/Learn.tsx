@@ -1,4 +1,4 @@
-"use cleint";
+"use client";
 import ScrollFadeContent from "@/components/ScrollFadeContent";
 import VideoPlayAnimation from "@/components/VideoPlayAnimation";
 import { useScroll } from "framer-motion";
