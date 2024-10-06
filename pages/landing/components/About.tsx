@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
 
 gsap.registerPlugin(useGSAP);
 
@@ -43,12 +44,12 @@ const About = () => {
     },
   });
   useGSAP(() => {
-    tl.from("#about-section h2", {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "sine",
-    });
+    // tl.from("#about-section h2", {
+    //   y: 20,
+    //   opacity: 0,
+    //   duration: 0.5,
+    //   ease: "sine",
+    // });
     tl.from(
       "#about-content",
       {
@@ -66,29 +67,33 @@ const About = () => {
       id="about-section"
       className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 scroll-panel h-screen justify-center"
     >
-      <h2 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] max-w-[800px]">
-        Your investments are <span className="italic font-medium">secured</span>{" "}
-        with us
-      </h2>
+      <FadeInUpwardAnimation>
+        <h2 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] max-w-[800px]">
+          Your investments are{" "}
+          <span className="italic font-medium">secured</span> with us
+        </h2>
+      </FadeInUpwardAnimation>
 
       <div className="flex flex-wrap justify-between gap-12">
         {aboutList.map((item, index) => {
           return (
-            <div
-              id="about-content"
-              key={index}
-              className="flex flex-col gap-4 max-w-[360px] "
-            >
-              {item.img}
-              <div className="flex flex-col gap-1">
-                <h3 className="text-[20px] textmd:text-[24px] font-semibold leading-[31.44px]">
-                  {item.title}
-                </h3>
-                <p className="text-[16px] md:text-[20px] leading-[20.4px] md:leading-[26.2px] text-black/60">
-                  {item.description}
-                </p>
+            <FadeInUpwardAnimation delay={(index + 1) * 0.1}>
+              <div
+                id="about-content"
+                key={index}
+                className="flex flex-col gap-4 max-w-[360px] "
+              >
+                {item.img}
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-[20px] textmd:text-[24px] font-semibold leading-[31.44px]">
+                    {item.title}
+                  </h3>
+                  <p className="text-[16px] md:text-[20px] leading-[20.4px] md:leading-[26.2px] text-black/60">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </FadeInUpwardAnimation>
           );
         })}
       </div>

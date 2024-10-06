@@ -4,7 +4,6 @@ import Axa from "./axa.png";
 import Dietl from "./dietl.png";
 import Gurrjohns from "./gurrjohns.png";
 import Momart from "./momart.png";
-import Learns from "./learn.png";
 import ArtworkImage from "./artwork.png";
 
 export {
@@ -12,7 +11,6 @@ export {
   ArttooLogoBlack,
   Axa,
   ArtworkImage,
-  Learns,
   Dietl,
   Gurrjohns,
   Momart,

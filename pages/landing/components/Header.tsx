@@ -6,6 +6,14 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
+import {
+  motion,
+  MotionValue,
+  useInView,
+  useTransform,
+  Variants,
+} from "framer-motion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -27,23 +35,19 @@ const navlinks = [
     link: "#",
   },
 ];
-const Header = () => {
-  const [openDrawer, setOpenDrawer] = React.useState(false);
+const Header = ({ progress }: { progress: MotionValue<number> }) => {
+  const navbarTextColor = useTransform(
+    progress,
+    [0, 0.9, 0.99, 1],
+    ["#FFFFFF", "#FFFFFF", "#000000", "#000000"]
+  );
 
-  const tl = gsap.timeline();
-  useGSAP(() => {
-    tl.to("#nav-container img", {
-      y: -10,
-      opacity: 1,
-      duration: 0.3,
-    });
-    tl.to("#nav-container div a", {
-      y: -10,
-      opacity: 1,
-      duration: 0.2,
-      stagger: 0.05,
-    });
-  });
+  const navImageFilter = useTransform(
+    progress,
+    [0, 0.9, 0.99, 1],
+    ["invert(0%)", "invert(0%)", "invert(100%)", "invert(100%)"]
+  );
+  const [openDrawer, setOpenDrawer] = React.useState(false);
 
   useEffect(() => {
     if (openDrawer) {
@@ -63,7 +67,16 @@ const Header = () => {
           id="nav-container"
           className="flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto"
         >
-          <Image src={ArttooLogo} alt="logo" className="w-[160px] opacity-0" />
+          <FadeInUpwardAnimation translateY={20}>
+            <motion.img
+              src={"/arttoo-logo.png"}
+              alt="logo"
+              style={{
+                filter: navImageFilter,
+              }}
+              className="sm:w-[160px] w-[96px]"
+            />
+          </FadeInUpwardAnimation>
 
           <button
             onClick={() => setOpenDrawer(true)}
@@ -71,15 +84,25 @@ const Header = () => {
           >
             <Menu id="menu" />
           </button>
-          <div className="hidden sm:flex gap-16 text-white font-poppins font-medium">
+          <motion.div
+            className="hidden sm:flex gap-16  font-poppins font-medium"
+            style={{
+              color: navbarTextColor,
+            }}
+          >
             {navlinks.map((link, index) => {
               return (
-                <Link key={index} href={link.link} className="opacity-0">
-                  {link.title}
-                </Link>
+                <FadeInUpwardAnimation
+                  delay={(index + 1) * 0.05}
+                  translateY={20}
+                >
+                  <Link key={index} href={link.link}>
+                    {link.title}
+                  </Link>
+                </FadeInUpwardAnimation>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </header>
       <SideDrawer open={openDrawer} close={() => setOpenDrawer(false)} />

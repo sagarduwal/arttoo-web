@@ -59,3 +59,10 @@ body {
   background-color: white;
   color: black;
 }
+
+.scroll-container {
+  position: fixed;
+  will-change: transform;
+  right: 0;
+  left: 0;
+}
