@@ -69,7 +69,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
 
   return (
     <motion.div
-      className="h-screen w-full flex items-center justify-center sticky top-0 z-20"
+      className="h-[80vh] w-full flex items-center justify-center sticky top-0 z-20"
       style={{ opacity }}
     >
       <motion.div className="" style={{ y }}>

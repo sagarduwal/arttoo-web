@@ -1,10 +1,5 @@
 "use client";
-import {
-  motion,
-  MotionValue,
-  useMotionValueEvent,
-  useTransform,
-} from "framer-motion";
+import { MotionValue, useMotionValueEvent, useTransform } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const VideoPlayAnimation = ({
@@ -18,11 +13,10 @@ const VideoPlayAnimation = ({
   const images = useMemo(() => {
     const loadedImages: HTMLImageElement[] = [];
 
-    for (let i = 0; i <= 239; i++) {
+    for (let i = 9; i <= 239; i++) {
       const img = new Image();
       img.src = `/steps/step-${i}.png`;
       img.onload = () => {
-        // Update canvas size based on the first loaded image
         if (i === 0) {
           setCanvasSize({ width: img.width, height: img.height });
         }
@@ -61,7 +55,7 @@ const VideoPlayAnimation = ({
     [images, canvasSize]
   );
 
-  const currentIndex = useTransform(progress, [0, 1], [1, 240]);
+  const currentIndex = useTransform(progress, [0, 1], [1, 231]);
 
   useMotionValueEvent(currentIndex, "change", (latest) => {
     render(Number(latest.toFixed()));
@@ -72,8 +66,8 @@ const VideoPlayAnimation = ({
   }, [render]);
 
   return (
-    <div className="max-w-[640px] sticky top-0 max-h-[640px] w-full aspect-square flex items-center justify-center">
-      <motion.canvas
+    <div className="max-w-[640px] max-h-[640px] h-full w-full aspect-square flex items-center justify-center mt-20">
+      <canvas
         width={canvasSize.width}
         height={canvasSize.height}
         ref={canvasRef}
@@ -81,6 +75,7 @@ const VideoPlayAnimation = ({
           maxWidth: "100%",
           maxHeight: "100%",
           objectFit: "contain",
+          backgroundColor: "white",
         }}
       />
     </div>
