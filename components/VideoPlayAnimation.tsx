@@ -1,11 +1,11 @@
 "use client";
-import { MotionValue, useMotionValueEvent, useTransform } from "framer-motion";
+import { MotionValue, useMotionValueEvent } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const VideoPlayAnimation = ({
-  progress,
+  currentIndex,
 }: {
-  progress: MotionValue<number>;
+  currentIndex: MotionValue<number>;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [canvasSize, setCanvasSize] = useState({ width: 1000, height: 1000 });
@@ -55,7 +55,7 @@ const VideoPlayAnimation = ({
     [images, canvasSize]
   );
 
-  const currentIndex = useTransform(progress, [0, 1], [1, 231]);
+  // const currentIndex = useTransform(progress, [0, 1], [1, 231]);
 
   useMotionValueEvent(currentIndex, "change", (latest) => {
     render(Number(latest.toFixed()));
@@ -66,7 +66,7 @@ const VideoPlayAnimation = ({
   }, [render]);
 
   return (
-    <div className="max-w-[640px] max-h-[640px] h-full w-full aspect-square flex items-center justify-center mt-20">
+    <div className="max-w-[640px] max-h-[640px] h-full w-full aspect-square flex items-center justify-center mt-40 md:mt-20">
       <canvas
         width={canvasSize.width}
         height={canvasSize.height}
@@ -83,3 +83,11 @@ const VideoPlayAnimation = ({
 };
 
 export default VideoPlayAnimation;
+
+// import React from "react";
+
+// const VideoPlayAnimation = () => {
+//   return <div>VideoPlayAnimation</div>;
+// };
+
+// export default VideoPlayAnimation;

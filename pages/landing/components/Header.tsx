@@ -1,7 +1,8 @@
 "use client";
 import { ArttooLogoBlack } from "@/assets/images";
 import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-import { motion, MotionValue, useTransform } from "framer-motion";
+import { motion, MotionValue } from "framer-motion";
+// import { MotionValue } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,18 +26,13 @@ const navlinks = [
     link: "#",
   },
 ];
-const Header = ({ progress }: { progress: MotionValue<number> }) => {
-  const navbarTextColor = useTransform(
-    progress,
-    [0, 0.9, 0.99, 1],
-    ["#FFFFFF", "#FFFFFF", "#000000", "#000000"]
-  );
-
-  const navImageFilter = useTransform(
-    progress,
-    [0, 0.9, 0.99, 1],
-    ["invert(0%)", "invert(0%)", "invert(100%)", "invert(100%)"]
-  );
+const Header = ({
+  textColor,
+  navImg,
+}: {
+  textColor: MotionValue<string>;
+  navImg: MotionValue<string>;
+}) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
 
   useEffect(() => {
@@ -49,20 +45,14 @@ const Header = ({ progress }: { progress: MotionValue<number> }) => {
 
   return (
     <>
-      <header
-        id="header"
-        className=" h-fit fixed top-0 z-10 left-1/2 -translate-x-1/2  w-full"
-      >
-        <div
-          id="nav-container"
-          className="flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto"
-        >
+      <header className=" h-fit fixed top-0 z-10 left-1/2 -translate-x-1/2  w-full">
+        <div className="flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto">
           <FadeInUpwardAnimation translateY={20}>
             <motion.img
               src={"/arttoo-logo.png"}
               alt="logo"
               style={{
-                filter: navImageFilter,
+                filter: navImg,
               }}
               className="sm:w-[160px] w-[96px]"
             />
@@ -77,7 +67,7 @@ const Header = ({ progress }: { progress: MotionValue<number> }) => {
           <motion.div
             className="hidden sm:flex gap-16  font-poppins font-medium"
             style={{
-              color: navbarTextColor,
+              color: textColor,
             }}
           >
             {navlinks.map((link, index) => {
@@ -99,7 +89,13 @@ const Header = ({ progress }: { progress: MotionValue<number> }) => {
   );
 };
 
-const SideDrawer = ({ open, close }: { open: boolean; close: () => void }) => {
+export const SideDrawer = ({
+  open,
+  close,
+}: {
+  open: boolean;
+  close: () => void;
+}) => {
   return (
     <div
       className={`${
@@ -108,7 +104,7 @@ const SideDrawer = ({ open, close }: { open: boolean; close: () => void }) => {
     >
       <div className="flex justify-between mt-12 px-4">
         <Image src={ArttooLogoBlack} alt="logo" className="w-[120px]" />
-        <button onClick={close} className="">
+        <button onClick={close}>
           <X />
         </button>
       </div>

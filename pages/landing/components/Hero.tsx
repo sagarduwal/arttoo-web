@@ -5,7 +5,6 @@ const Hero = React.forwardRef<HTMLElement>(
     return (
       <section
         ref={ref}
-        id="hero"
         className=" flex flex-col w-screen h-screen scroll-panel video"
       >
         <video

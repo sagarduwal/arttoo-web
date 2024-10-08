@@ -1,7 +1,8 @@
 "use client";
-import VideoPlayAnimation from "@/components/VideoPlayAnimation";
+import VideoAnimation from "@/components/VideoAnimation";
+// import VideoPlayAnimation from "@/components/VideoPlayAnimation";
 import { useGSAP } from "@gsap/react";
-import { useScroll } from "framer-motion";
+// import { useScroll } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useRef } from "react";
@@ -30,10 +31,12 @@ const Steps = [
 const Learn = () => {
   const containerRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: containerRef,
+  //   offset: ["start start", "end end"],
+  // });
+
+  // const currentIndex = useTransform(scrollYProgress, [0, 1], [1, 231]);
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -48,28 +51,33 @@ const Learn = () => {
       ref={containerRef}
       className="w-[90vw] mx-auto sm:w-[85vw] min-h-screen "
     >
-      <div className="flex">
-        <div className="h-screen w-1/2" ref={leftRef}>
-          <VideoPlayAnimation progress={scrollYProgress} />
+      <div className="flex flex-col md:flex-row">
+        <div className="h-screen md:w-1/2 " ref={leftRef}>
+          {/* <VideoPlayAnimation currentIndex={currentIndex} /> */}
+          <VideoAnimation />
         </div>
-        <div className="w-1/2 flex flex-col gap-8 justify-center">
+        <div className="md:w-1/2 flex flex-col gap-8 justify-center z-50 ">
           {Steps.map((item, index) => {
             return (
               <div
                 key={index}
-                className="flex gap-4 max-w-[800px] h-screen items-center justify-center"
+                className=" max-w-[800px] h-[80vh] flex items-center justify-center"
               >
-                <span className="text-black/30 text-[40px] italic leading-[52.4px] mt-4">{`0${
-                  index + 1
-                }`}</span>
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium">
-                    {item.title}
-                  </h4>
-                  <p className=" text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]">
-                    {item.description}
-                  </p>
-                </div>
+                {item.title && (
+                  <div className="flex gap-4 items-start justify-center">
+                    <span className="text-black/30 text-[40px] italic leading-[52.4px] md:mt-4">{`0${
+                      index + 1
+                    }`}</span>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium">
+                        {item.title}
+                      </h4>
+                      <p className=" text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
