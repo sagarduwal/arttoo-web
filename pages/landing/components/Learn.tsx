@@ -1,6 +1,5 @@
 'use client';
 import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
-// import VideoAnimation from "@/components/VideoAnimation";
 // import VideoPlayAnimation from "@/components/VideoPlayAnimation";
 import { useGSAP } from '@gsap/react';
 // import { useScroll } from "framer-motion";
@@ -32,12 +31,6 @@ const Steps = [
 const Learn = () => {
   const containerRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
-  // const { scrollYProgress } = useScroll({
-  //   target: containerRef,
-  //   offset: ["start start", "end end"],
-  // });
-
-  // const currentIndex = useTransform(scrollYProgress, [0, 1], [1, 231]);
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -50,10 +43,13 @@ const Learn = () => {
   return (
     <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw] min-h-screen '>
       <div className='flex flex-col md:flex-row'>
-        <div className='h-screen md:w-1/2 ' ref={leftRef}>
+        <div className='h-screen md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
           {/* <VideoPlayAnimation currentIndex={currentIndex} /> */}
           {/* <VideoAnimation /> */}
-          athis is video
+          <video autoPlay muted playsInline className='w-full object-cover'>
+            <source src='/steps.mp4' type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div className='md:w-1/2 flex flex-col gap-8 justify-center z-50 '>
           {Steps.map((item, index) => {
