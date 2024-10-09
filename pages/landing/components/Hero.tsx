@@ -8,13 +8,14 @@ const Hero = React.forwardRef<HTMLElement>(
         className=" flex flex-col w-screen h-screen scroll-panel video"
       >
         <video
-          src="/hero.mp4"
           autoPlay
           muted
-          loop
           playsInline
           className="h-full w-full object-cover"
-        />
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </section>
     );
   }

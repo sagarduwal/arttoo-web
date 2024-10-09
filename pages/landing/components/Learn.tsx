@@ -1,5 +1,6 @@
 'use client';
-import VideoAnimation from '@/components/VideoAnimation';
+import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
+// import VideoAnimation from "@/components/VideoAnimation";
 // import VideoPlayAnimation from "@/components/VideoPlayAnimation";
 import { useGSAP } from '@gsap/react';
 // import { useScroll } from "framer-motion";
@@ -51,26 +52,31 @@ const Learn = () => {
       <div className='flex flex-col md:flex-row'>
         <div className='h-screen md:w-1/2 ' ref={leftRef}>
           {/* <VideoPlayAnimation currentIndex={currentIndex} /> */}
-          <VideoAnimation />
+          {/* <VideoAnimation /> */}
+          athis is video
         </div>
         <div className='md:w-1/2 flex flex-col gap-8 justify-center z-50 '>
           {Steps.map((item, index) => {
             return (
-              <div key={index} className='max-w-[800px] h-[80vh] flex items-center justify-center'>
-                {item.title && (
-                  <div className='flex gap-4 items-start justify-center'>
-                    <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${index + 1}`}</span>
-                    <div className='flex flex-col gap-2'>
-                      <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                        {item.title}
-                      </h4>
-                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
-                        {item.description}
-                      </p>
+              <FadeInUpwardAnimation key={index} delay={0.3} translateY={200}>
+                <div className=' max-w-[800px] h-[80vh] flex items-center justify-center'>
+                  {item.title && (
+                    <div className='flex gap-4 items-start justify-center'>
+                      <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${
+                        index + 1
+                      }`}</span>
+                      <div className='flex flex-col gap-2'>
+                        <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
+                          {item.title}
+                        </h4>
+                        <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              </FadeInUpwardAnimation>
             );
           })}
         </div>
