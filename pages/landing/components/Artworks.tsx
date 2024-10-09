@@ -1,7 +1,5 @@
 "use client";
-import { ArtworkImage } from "@/assets/images";
 import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-import Image from "next/image";
 
 const Artworks = () => {
   return (
