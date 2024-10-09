@@ -74,6 +74,8 @@ export default function Admin() {
     }
   }, [isAuthenticated]);
 
+  console.log(process.env.NEXT_PUBLIC_USERNAME, process.env.NEXT_PUBLIC_PASSWORD);
+
   const handleLogin = async (username: string, password: string) => {
     setIsLoading(true);
     setError('');
