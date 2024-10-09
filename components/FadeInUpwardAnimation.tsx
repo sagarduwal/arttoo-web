@@ -29,6 +29,7 @@ const FadeInUpwardAnimation: React.FC<FadeInUpProps> = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
+      className="w-fit"
     >
       {children}
     </motion.div>

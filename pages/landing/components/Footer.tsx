@@ -19,7 +19,7 @@ const Footer = () => {
               Submit
             </button>
           </div>
-          <p className="text-white leading-[19.2px]  font-light">
+          <p className="text-white text-[14px] leading-[19.2px]  font-light">
             Join the Waitlist & Get Informed when New Artworks are Available!
           </p>
         </div>
