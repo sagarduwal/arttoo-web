@@ -5,11 +5,8 @@ import Image from "next/image";
 
 const Artworks = () => {
   return (
-    <section
-      id="artworks"
-      className="w-[90vw] mx-auto sm:w-[85vw] overflow-clip  gap-16 scroll-panel light h-screen"
-    >
-      <div className="flex justify-between flex-col md:flex-row gap-4 mt-60">
+    <section className="overflow-clip h-screen">
+      <div className="flex justify-between flex-col md:flex-row gap-4 mt-32 w-[90vw] mx-auto sm:w-[85vw]">
         <FadeInUpwardAnimation>
           <h1 className="text-[50px] sm:text-[75px] text-balance md:text-[100px] leading-[65px] sm:leading-[100px] md:leading-[131px] max-w-1/3">
             Art Is The Visual{" "}
@@ -28,7 +25,16 @@ const Artworks = () => {
           </p>
         </FadeInUpwardAnimation>
       </div>
-      <Image src={ArtworkImage} alt="artwork" className="max-h-[600px]" />
+      <video
+        autoPlay
+        muted
+        playsInline
+        loop
+        className="w-full md:-mt-40 h-full object-cover"
+      >
+        <source src="/section2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </section>
   );
 };
