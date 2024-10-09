@@ -24,6 +24,7 @@ const LoginForm: React.FC<{ onLogin: (username: string, password: string) => voi
       <input
         type='text'
         placeholder='Username'
+        autoComplete='username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         className='w-full p-2 mb-4 border rounded'
@@ -31,6 +32,7 @@ const LoginForm: React.FC<{ onLogin: (username: string, password: string) => voi
       <input
         type='password'
         placeholder='Password'
+        autoComplete='current-password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className='w-full p-2 mb-4 border rounded'
@@ -75,8 +77,7 @@ export default function Admin() {
   const handleLogin = async (username: string, password: string) => {
     setIsLoading(true);
     setError('');
-
-    if (username === 'admin' && password === 'admin') {
+    if (username === process.env.NEXT_PUBLIC_USERNAME && password === process.env.NEXT_PUBLIC_PASSWORD) {
       setIsAuthenticated(true);
     } else {
       setError('Invalid username or password');
