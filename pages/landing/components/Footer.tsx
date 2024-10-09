@@ -1,30 +1,27 @@
 import React, { FormEvent, useState } from 'react';
 
 const Footer = () => {
-  const [email, setEmail] = useState<string>(''); // email state to capture the input value
-  const [message, setMessage] = useState<string>(''); // message state to display response
-  const [messageError, setMessageError] = useState<string>(''); // message state to display response
-  const [loading, setLoading] = useState<boolean>(false); // message state to display response
+  const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [messageError, setMessageError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent form default submission (page reload)
+    e.preventDefault();
     try {
-      // Make a POST request to the API endpoint
       setLoading(true);
       setMessage('');
       if (email) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}email`, {
+        const response = await fetch(`/api/email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email }), // Send email in the body
+          body: JSON.stringify({ email }),
         });
 
-        // Parse the response from the API
         const data = await response.json();
 
-        // Check if the response is successful
         if (response.ok) {
           setMessage('Email successfully submitted!');
         } else {
@@ -38,7 +35,6 @@ const Footer = () => {
       setMessageError(`Error: ${errorMessage}`);
     }
 
-    // Clear the email input field after submission
     setEmail('');
     setLoading(false);
   };
