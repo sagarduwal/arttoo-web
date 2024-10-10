@@ -15,10 +15,15 @@ const LandingPage = () => {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const navbarTextColor = useTransform(
+  // const navbarTextColor = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.9, 0.99, 1],
+  //   ['#FFFFFF', '#FFFFFF', '#000000', '#000000']
+  // );
+  const navbarBgColor = useTransform(
     scrollYProgress,
     [0, 0.9, 0.99, 1],
-    ['#FFFFFF', '#FFFFFF', '#000000', '#000000']
+    ['transparent', 'transparent', '#FFFFFF00', '#FFFFFFEE']
   );
   const navImageFilter = useTransform(
     scrollYProgress,
@@ -28,7 +33,11 @@ const LandingPage = () => {
 
   return (
     <main ref={main} className='flex flex-col overflow-x-hidden'>
-      <Header textColor={navbarTextColor} navImg={navImageFilter} />
+      <Header
+        // textColor={navbarTextColor}
+        navImg={navImageFilter}
+        navbarBgColor={navbarBgColor}
+      />
       <Hero ref={heroRef} />
       <Artworks />
       <Learn />

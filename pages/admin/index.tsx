@@ -65,6 +65,8 @@ const EmailTable: React.FC<{ emails: Email[] }> = ({ emails }) => (
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const [error, setError] = useState('');
   const [emails, setEmails] = useState<Email[]>([]);
 
@@ -73,8 +75,6 @@ export default function Admin() {
       fetchEmails();
     }
   }, [isAuthenticated]);
-
-  console.log(process.env.NEXT_PUBLIC_USERNAME, process.env.NEXT_PUBLIC_PASSWORD);
 
   const handleLogin = async (username: string, password: string) => {
     setIsLoading(true);
@@ -108,6 +108,19 @@ export default function Admin() {
     setIsAuthenticated(false);
     setEmails([]);
   };
+  const downloadCSV = (emails: Email[]) => {
+    setIsDownloading(true);
+    const csvContent =
+      'data:text/csv;charset=utf-8,' + 'ID,Email\n' + emails.map((e, n) => `${n + 1},${e.email}`).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'emails.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setIsDownloading(false);
+  };
 
   if (isLoading) {
     return <div className='min-h-screen flex items-center justify-center'>Loading...</div>;
@@ -125,9 +138,33 @@ export default function Admin() {
     <div className='container mx-auto p-4'>
       <div className='flex justify-between items-center mb-4'>
         <h1 className='text-2xl font-bold'>Email Dashboard</h1>
-        <button onClick={handleLogout} className='bg-red-500 text-white p-2 rounded'>
-          Logout
-        </button>
+        <div className='flex gap-1'>
+          <button
+            onClick={() => downloadCSV(emails)}
+            disabled={isDownloading}
+            className='flex items-center space-x-2 px-4 py-2 bg-gray-950 text-white rounded hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed'
+          >
+            <span>Download CSV</span>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='16'
+              height='16'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            >
+              <path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4' />
+              <polyline points='7 10 12 15 17 10' />
+              <line x1='12' y1='15' x2='12' y2='3' />
+            </svg>
+          </button>
+          <button onClick={handleLogout} className='bg-red-500 text-white p-2 rounded'>
+            Logout
+          </button>
+        </div>
       </div>
       {error && <p className='text-red-500 mb-4'>{error}</p>}
       <EmailTable emails={emails} />
