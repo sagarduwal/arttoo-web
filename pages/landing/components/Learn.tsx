@@ -54,7 +54,7 @@ const Learn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw] min-h-screen '>
+    <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw] min-h-screen'>
       <div className='flex flex-col md:flex-row'>
         <div className='h-screen md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
           <video ref={videoRef} muted className='w-full' preload='auto'>
@@ -70,7 +70,7 @@ const Learn = () => {
           {Steps.map((item, index) => {
             return (
               <FadeInUpwardAnimation key={index} delay={0.3} translateY={200}>
-                <div className=' max-w-[800px] h-[80vh] flex items-center justify-center'>
+                <div className='max-w-[800px] h-[80vh] flex items-center justify-center'>
                   {item.title && (
                     <div className='flex gap-4 items-start justify-center'>
                       <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${

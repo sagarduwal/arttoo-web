@@ -19,7 +19,7 @@ const Artworks = () => {
           </p>
         </FadeInUpwardAnimation>
       </div>
-      <video autoPlay muted playsInline loop className='w-full h-2/3 -mt-20 md:-mt-10 object-cover'>
+      <video playsInline autoPlay muted loop className='w-full h-2/3 -mt-20 md:-mt-10 object-cover'>
         <source src='/section2.mp4' type='video/mp4' />
         Your browser does not support the video tag.
       </video>
