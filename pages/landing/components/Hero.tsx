@@ -17,7 +17,10 @@ const Hero = () => {
           <source src="/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <button onClick={() => ScrollTo("artworks")}>
+        <button
+          className="sm:block hidden"
+          onClick={() => ScrollTo("artworks")}
+        >
           <Image
             src={MouseScroll}
             className="absolute animate-bounce bottom-10 left-1/2 transform -translate-x-1/2"
