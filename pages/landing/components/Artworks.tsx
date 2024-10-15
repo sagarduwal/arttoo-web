@@ -3,8 +3,8 @@ import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
 
 const Artworks = () => {
   return (
-    <section className="overflow-clip h-[125vh] md:h-[125vh]">
-      <div className="flex justify-between flex-col md:flex-row gap-4 mt-32 w-[90vw] mx-auto sm:w-[85vw]">
+    <section id="artworks" className="overflow-clip h-[125vh] md:h-[125vh]">
+      <div className="flex justify-between flex-col md:flex-row gap-4 mt-64 w-[90vw] mx-auto sm:w-[85vw]">
         <FadeInUpwardAnimation>
           <h1 className="text-[50px] sm:text-[75px] md:text-[90px] leading-[65px] text-balance sm:leading-[100px] md:leading-[131px] tracking-tight">
             Art Is The Visual{" "}
