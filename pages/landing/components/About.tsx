@@ -33,7 +33,7 @@ const About = () => {
   return (
     <section
       id="about-section"
-      className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 scroll-panel h-screen justify-center"
+      className="w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 justify-center"
     >
       <FadeInUpwardAnimation>
         <h2 className="text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] max-w-[800px]">

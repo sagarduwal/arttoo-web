@@ -1,7 +1,7 @@
-'use client';
+"use client";
 // import { ArttooLogoBlack } from '@/assets/images';
-import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
-import { motion, MotionValue } from 'framer-motion';
+import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
+import { motion, MotionValue } from "framer-motion";
 // import { Menu, X } from 'lucide-react';
 // import Image from 'next/image';
 // import Link from 'next/link';
@@ -9,20 +9,20 @@ import { motion, MotionValue } from 'framer-motion';
 
 // const navlinks = [
 //   {
-//     title: 'Artworks',
-//     link: '#',
+//     title: "Artworks",
+//     link: "#",
 //   },
 //   {
-//     title: 'Learn',
-//     link: '#',
+//     title: "Learn",
+//     link: "#",
 //   },
 //   {
-//     title: 'About',
-//     link: '#',
+//     title: "About",
+//     link: "#",
 //   },
 //   {
-//     title: 'Contact us',
-//     link: '#',
+//     title: "Contact us",
+//     link: "#",
 //   },
 // ];
 const Header = ({
@@ -47,18 +47,18 @@ const Header = ({
   return (
     <>
       <motion.header
-        className='h-fit fixed top-0 z-[100] left-1/2 -translate-x-1/2 w-full'
+        className="h-fit fixed top-0 z-[100] left-1/2 -translate-x-1/2 w-full"
         style={{ backgroundColor: navbarBgColor }}
       >
-        <div className='flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto'>
+        <div className="flex justify-between w-[90vw] sm:w-[85vw] py-8 mx-auto">
           <FadeInUpwardAnimation translateY={20}>
             <motion.img
-              src={'/arttoo-logo.png'}
-              alt='logo'
+              src={"/arttoo-logo.png"}
+              alt="logo"
               style={{
                 filter: navImg,
               }}
-              className='sm:w-[160px] w-[96px]'
+              className="sm:w-[160px] w-[96px]"
             />
           </FadeInUpwardAnimation>
 
@@ -70,9 +70,9 @@ const Header = ({
           </button> */}
           {/* <motion.div
             className="hidden sm:flex gap-16  font-poppins font-medium"
-            style={{
-              color: textColor,
-            }}
+            // style={{
+            //   color: textColor,
+            // }}
           >
             {navlinks.map((link, index) => {
               return (
@@ -81,7 +81,9 @@ const Header = ({
                   delay={(index + 1) * 0.05}
                   translateY={20}
                 >
-                  <Link href={link.link}>{link.title}</Link>
+                  <Link href={link.link} className="nav-link">
+                    {link.title}
+                  </Link>
                 </FadeInUpwardAnimation>
               );
             })}

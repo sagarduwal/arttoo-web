@@ -75,8 +75,11 @@ const Learn = () => {
         <div className="md:w-1/2 flex flex-col gap-8 justify-center z-50 ">
           {Steps.map((item, index) => {
             return (
-              <FadeInUpwardAnimation key={index} delay={0.3} translateY={200}>
-                <div className="max-w-[800px] h-[80vh] flex items-center justify-center">
+              <div
+                key={index}
+                className="max-w-[800px] h-screen flex items-end justify-center [&:nth-child(3)]:items-center"
+              >
+                <FadeInUpwardAnimation delay={0.3} translateY={200}>
                   {item.title && (
                     <div className="flex gap-4 items-start justify-center">
                       <span className="text-black/30 text-[40px] italic leading-[52.4px] md:mt-4">{`0${
@@ -92,8 +95,8 @@ const Learn = () => {
                       </div>
                     </div>
                   )}
-                </div>
-              </FadeInUpwardAnimation>
+                </FadeInUpwardAnimation>
+              </div>
             );
           })}
         </div>
