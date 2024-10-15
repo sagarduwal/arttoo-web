@@ -5,7 +5,7 @@ import Dietl from "./dietl.png";
 import Gurrjohns from "./gurrjohns.png";
 import Momart from "./momart.png";
 import ArtworkImage from "./artwork.png";
-
+import MouseScroll from "./mouse-scroll.png";
 export {
   ArttooLogo,
   ArttooLogoBlack,
@@ -14,4 +14,5 @@ export {
   Dietl,
   Gurrjohns,
   Momart,
+  MouseScroll,
 };

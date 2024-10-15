@@ -13,7 +13,7 @@ const LandingPage = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
   // const navbarTextColor = useTransform(
   //   scrollYProgress,
@@ -22,27 +22,29 @@ const LandingPage = () => {
   // );
   const navbarBgColor = useTransform(
     scrollYProgress,
-    [0, 0.9, 0.99, 1],
-    ["transparent", "transparent", "#FFFFFF00", "#FFFFFFEE"]
+    [0, 0.02, 0.99, 1],
+    ["transparent", "FFFFFF00", "#FFFFFFEE", "#FFFFFFEE"]
   );
   const navImageFilter = useTransform(
     scrollYProgress,
-    [0, 0.9, 0.99, 1],
-    ["invert(0%)", "invert(0%)", "invert(100%)", "invert(100%)"]
+    [0, 0.02, 0.99, 1],
+    ["invert(0%)", "invert(100%)", "invert(100%)", "invert(100%)"]
   );
 
   return (
-    <main ref={main} className="flex flex-col overflow-x-hidden gap-8 ">
+    <main ref={main} className="flex flex-col gap-8 ">
       <Header
         // textColor={navbarTextColor}
         navImg={navImageFilter}
         navbarBgColor={navbarBgColor}
       />
-      <Hero ref={heroRef} />
-      <Artworks />
-      <Learn />
-      <About />
-      <Footer />
+      <Hero />
+      <div ref={heroRef} className="flex flex-col gap-8 bg-white z-50">
+        <Artworks />
+        <Learn />
+        <About />
+        <Footer />
+      </div>
     </main>
   );
 };
