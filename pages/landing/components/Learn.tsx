@@ -50,10 +50,12 @@ const Learn = () => {
     if (!video) return;
     ScrollTrigger.create({
       trigger: containerRef.current,
-      start: 'top top',
-      end: 'bottom bottom',
+      start: 'top 20%',
+      markers: true,
+      end: `bottom 50%`,
       pin: leftRef.current,
       onUpdate: (e) => {
+        console.log('scroll event', e.progress);
         if (video && video.duration) {
           const totalTime = video.duration;
           const progress = e.progress;
@@ -67,9 +69,12 @@ const Learn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw] min-h-screen'>
-      <div className='flex flex-col md:flex-row'>
-        <div className='h-[80vh] md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
+    <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw] min-h-screen h-full '>
+      <div className='flex flex-col lg:flex-row'>
+        <div
+          className='h-[80vh] lg:w-1/2 flex justify-center items-center lg:justify-start lg:items-start'
+          ref={leftRef}
+        >
           <video ref={videoRef} muted className='w-full' preload='auto'>
             <source
               type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
@@ -79,8 +84,8 @@ const Learn = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        {windowWidth >= 735 ? (
-          <div className='md:w-1/2 flex flex-col gap-8 justify-center md:z-50'>
+        {windowWidth >= 780 ? (
+          <div className='lg:w-1/2 flex flex-col justify-center lg:z-50 h-full'>
             {Steps.map((item, index) => {
               return (
                 <div
@@ -90,7 +95,7 @@ const Learn = () => {
                   <FadeInUpwardAnimation delay={0.3} translateY={200}>
                     {item.title && (
                       <div className='flex gap-4 items-start justify-center'>
-                        <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${
+                        <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
                           index + 1
                         }`}</span>
                         <div className='flex flex-col gap-2'>
@@ -111,7 +116,7 @@ const Learn = () => {
         ) : (
           <>
             {progression > 0 && progression < 1 && (
-              <div className='gap-8 md:z-50'>
+              <div className='gap-8 lg:z-50'>
                 {Steps.map((item, index) => {
                   return (
                     <div
@@ -124,7 +129,7 @@ const Learn = () => {
                     >
                       <FadeInUpwardAnimation delay={0.6} translateY={50}>
                         <div className='flex gap-4 items-start justify-center'>
-                          <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4 '>{`0${
+                          <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4 '>{`0${
                             index + 1
                           }`}</span>
                           <div className='flex flex-col gap-2'>
@@ -142,7 +147,8 @@ const Learn = () => {
                 })}
               </div>
             )}
-            <div className='md:w-1/2 flex flex-col gap-8 justify-center md:z-50 '>
+            {/* To Maintain the scrollable height (can be obtimized)*/}
+            <div className='lg:w-1/2 flex flex-col gap-8 justify-center lg:z-50 '>
               {Steps.map((item, index) => {
                 return (
                   <div
