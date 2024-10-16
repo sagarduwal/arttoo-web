@@ -3,7 +3,7 @@ import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -34,14 +34,20 @@ const Learn = () => {
   const containerRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [windowWidth, setwindowWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
   const [progression, setProgression] = useState<number>(0);
+  useEffect(() => {
+    const updateWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
   useGSAP(() => {
     const video = videoRef.current;
     if (!video) return;
-    window.addEventListener('resize', () => {
-      setwindowWidth(() => window.innerWidth);
-    });
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
