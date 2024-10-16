@@ -51,7 +51,6 @@ const Learn = () => {
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top 20%',
-      markers: true,
       end: `bottom 50%`,
       pin: leftRef.current,
       onUpdate: (e) => {
