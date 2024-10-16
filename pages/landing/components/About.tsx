@@ -19,8 +19,8 @@ const aboutList = [
   {
     img: (
       <div className='flex gap-8'>
-        <Image src={Momart} alt='Momart' className=' w-[40px]' />
-        <Image src={Dietl} alt='Dietl' className=' w-[40px]' />
+        <Image src={Momart} alt='Momart' className='w-[40px]' />
+        <Image src={Dietl} alt='Dietl' className='w-[40px]' />
       </div>
     ),
     title: 'Secure Transportation and Storage',
