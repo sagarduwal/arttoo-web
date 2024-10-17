@@ -145,7 +145,7 @@ const Steps = [
 ];
 
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
-const videoSrc = "/steps-43.mp4";
+const videoSrc = '/steps-43.mp4';
 
 const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -166,8 +166,8 @@ const Learn: React.FC = () => {
         video.currentTime = video.duration * percentScrolled;
 
         // Update current step based on scroll progress
-        const newStep = Steps.findIndex(step =>
-          percentScrolled >= step.progress.min && percentScrolled < step.progress.max
+        const newStep = Steps.findIndex(
+          (step) => percentScrolled >= step.progress.min && percentScrolled < step.progress.max
         );
         if (newStep !== -1 && newStep !== currentStep) {
           setCurrentStep(newStep);
@@ -180,41 +180,43 @@ const Learn: React.FC = () => {
   }, [currentStep]);
 
   return (
-    <div ref={containerRef} className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen flex items-center justify-center">
-        <div className="w-full h-[90svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center justify-between">
-          {/* Video Section */}
-          <div className="w-full lg:w-1/2 aspect-video  lg:mb-0 order-2 lg:order-1">
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              muted
-              preload="auto"
-            >
-              <source src={videoSrc} type="video/mp4" />
+    <section ref={containerRef} className='relative h-[300vh]'>
+      <div className='sticky top-0 h-screen flex items-center justify-center'>
+        <div className='w-full h-[80svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center justify-between'>
+          <div className='w-full lg:w-1/2 aspect-square order-2 lg:order-1'>
+            <video ref={videoRef} className='w-full h-full object-cover' playsInline autoPlay muted preload='auto'>
+              <source src={videoSrc} type='video/mp4' />
               <p>Your browser does not support the HTML5 Video element.</p>
             </video>
           </div>
-
-          {/* Content/Steps Section */}
-          <div className="w-full lg:w-1/2 flex flex-col mt-[10rem] lg:mt-[0px] justify-center items-center lg:items-start lg:pl-8 order-1 lg:order-2">
-            <AnimatePresence mode="wait">
+          <div className='flex flex-col w-full lg:w-1/2 lg:pl-8 order-1 lg:order-2 pt-24 lg:pt-0'>
+            <AnimatePresence mode='wait'>
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 200 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-center lg:text-left"
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
               >
-                <h2 className="text-3xl font-bold mb-4">{Steps[currentStep].title}</h2>
-                <p className="text-lg">{Steps[currentStep].description}</p>
+                <div className='flex gap-4 items-start justify-start'>
+                  <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
+                    currentStep + 1
+                  }`}</span>
+                  <div className='flex flex-col gap-2'>
+                    <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
+                      {Steps[currentStep].title}
+                    </h4>
+                    <p className='text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                      {Steps[currentStep].description}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

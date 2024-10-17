@@ -31,18 +31,18 @@ const aboutList = [
 
 const About = () => {
   return (
-    <section id='about-section' className='w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 justify-center'>
+    <section id='about-section' className='w-[90vw] mx-auto sm:w-[85vw] flex flex-col pb-8 justify-center'>
       <FadeInUpwardAnimation>
-        <h2 className='text-[50px] sm:text-[75px] lg:text-[100px] text-balance leading-[65px] sm:leading-[100px] lg:leading-[131px] max-w-[800px]'>
+        <h2 className='text-[50px] sm:text-[75px] lg:text-[100px] text-balance leading-[65px] sm:leading-[100px] lg:leading-[131px] max-w-[800px] mb-8'>
           Your investments are <span className='italic font-medium'>secured</span> with us
         </h2>
       </FadeInUpwardAnimation>
 
-      <div className='flex flex-wrap justify-between gap-12'>
+      <div className='flex flex-wrap justify-between gap-16'>
         {aboutList.map((item, index) => {
           return (
             <FadeInUpwardAnimation key={index} delay={(index + 1) * 0.1}>
-              <div id='about-content' className='flex flex-col gap-4 max-w-[360px] '>
+              <div id='about-content' className='flex flex-col gap-8 max-w-[360px] '>
                 {item.img}
                 <div className='flex flex-col gap-1'>
                   <h3 className='text-[20px] md:text-[24px] font-semibold leading-[31.44px]'>{item.title}</h3>
