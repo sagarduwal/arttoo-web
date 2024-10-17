@@ -45,7 +45,7 @@ const About = () => {
               <div id='about-content' className='flex flex-col gap-4 max-w-[360px] '>
                 {item.img}
                 <div className='flex flex-col gap-1'>
-                  <h3 className='text-[20px] textmd:text-[24px] font-semibold leading-[31.44px]'>{item.title}</h3>
+                  <h3 className='text-[20px] md:text-[24px] font-semibold leading-[31.44px]'>{item.title}</h3>
                   <p className='text-[16px] md:text-[20px] leading-[20.4px] md:leading-[26.2px] text-black/60'>
                     {item.description}
                   </p>
