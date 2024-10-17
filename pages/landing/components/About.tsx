@@ -31,10 +31,7 @@ const aboutList = [
 
 const About = () => {
   return (
-    <section
-      id='about-section'
-      className='w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 justify-center mt-80 md:mt-96 lg:mt-0'
-    >
+    <section id='about-section' className='w-[90vw] mx-auto sm:w-[85vw] flex flex-col gap-16 justify-center'>
       <FadeInUpwardAnimation>
         <h2 className='text-[50px] sm:text-[75px] lg:text-[100px] text-balance leading-[65px] sm:leading-[100px] lg:leading-[131px] max-w-[800px]'>
           Your investments are <span className='italic font-medium'>secured</span> with us

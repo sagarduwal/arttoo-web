@@ -54,7 +54,6 @@ const Learn = () => {
       end: `bottom 50%`,
       pin: leftRef.current,
       onUpdate: (e) => {
-        console.log('scroll event', e.progress);
         if (video && video.duration) {
           const totalTime = video.duration;
           const progress = e.progress;
@@ -74,11 +73,16 @@ const Learn = () => {
           className='h-[80vh] lg:w-1/2 flex justify-center items-center lg:justify-start lg:items-start'
           ref={leftRef}
         >
-          <video ref={videoRef} muted className='w-full' preload='auto'>
+          <video
+            ref={videoRef}
+            muted
+            className='w-full relative after:content-[""] after:absolute after:inset-0 after:bg-slate-500/25'
+            preload='auto'
+          >
             <source
               type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
               // src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
-              src='/steps-43.mp4'
+              src='/section3.mp4'
             ></source>
             Your browser does not support the video tag.
           </video>
