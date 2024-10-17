@@ -165,7 +165,6 @@ const Learn: React.FC = () => {
 
         video.currentTime = video.duration * percentScrolled;
 
-        // Update current step based on scroll progress
         const newStep = Steps.findIndex(
           (step) => percentScrolled >= step.progress.min && percentScrolled < step.progress.max
         );
@@ -182,7 +181,7 @@ const Learn: React.FC = () => {
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
-        <div className='w-full h-[80svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-center justify-between'>
+        <div className='w-full h-[80svh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start justify-between'>
           <div className='w-full lg:w-1/2 aspect-square order-2 lg:order-1'>
             <video ref={videoRef} className='w-full h-full object-cover' playsInline autoPlay muted preload='auto'>
               <source src={videoSrc} type='video/mp4' />
@@ -193,23 +192,22 @@ const Learn: React.FC = () => {
             <AnimatePresence mode='wait'>
               <motion.div
                 key={currentStep}
-                initial={{ opacity: 0, y: 200 }}
+                initial={{ opacity: 0, y: 360 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className='flex gap-4 items-start justify-start pt-16'
               >
-                <div className='flex gap-4 items-start justify-start'>
-                  <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
-                    currentStep + 1
-                  }`}</span>
-                  <div className='flex flex-col gap-2'>
-                    <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                      {Steps[currentStep].title}
-                    </h4>
-                    <p className='text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
-                      {Steps[currentStep].description}
-                    </p>
-                  </div>
+                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
+                  currentStep + 1
+                }`}</span>
+                <div className='flex flex-col gap-2'>
+                  <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
+                    {Steps[currentStep].title}
+                  </h4>
+                  <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                    {Steps[currentStep].description}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
