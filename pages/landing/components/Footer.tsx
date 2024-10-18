@@ -109,7 +109,7 @@ const Footer = () => {
                   Submit
                 </button>
               </form>
-              <p className='text-white text-[10px] lg:text-base leading-[19.2px] font-light'>
+              <p className='text-white text-[11px] lg:text-base leading-[19.2px] font-light'>
                 Join the Waitlist & Get Informed when New Artworks are Available!
               </p>
               {message && <p className='text-green-600 text-sm'>{message}</p>}
