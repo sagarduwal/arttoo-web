@@ -111,7 +111,7 @@ const Learn: React.FC = () => {
                 }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title}
+                    {Steps[currentStep].title} {isIOS ? 'iOS arrrr' : 'Android'}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                     {Steps[currentStep].description}
