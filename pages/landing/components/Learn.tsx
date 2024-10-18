@@ -75,12 +75,14 @@ const Learn: React.FC = () => {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (video && isIOS) {
-      if (isIOS) {
-        video.pause()
-      } else {
-        video.play()
-      }
+    if (video) {
+      // if (isIOS) {
+      //   video.pause()
+      // }
+      // else {
+      //   video.pause()
+      // }
+      video.pause()
     }
   }, [isIOS]);
 
