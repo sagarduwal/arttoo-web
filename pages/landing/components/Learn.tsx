@@ -78,7 +78,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay={isIOS}
+              autoPlay
               playsInline
               muted
               preload='auto'
