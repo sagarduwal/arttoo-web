@@ -69,7 +69,7 @@ const Learn: React.FC = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    setIsIOS(platform.os?.family?.toString().toLowerCase() === 'ios' ? true : false);  // Detect if the OS is iOS
+    setIsIOS(platform.os?.family?.toString().toLowerCase() === 'ios' ? true : false); // Detect if the OS is iOS
   }, [platform]);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const Learn: React.FC = () => {
           <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
             <video
               ref={videoRef}
-              className='w-full h-full object-cover relative z-20'
+              className='w-full h-full object-cover relative z-10'
               autoPlay={isIOS ? true : false}
               playsInline
               muted
