@@ -3,8 +3,8 @@ import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
 
 const Artworks = () => {
   return (
-    <section id='artworks' className='relative overflow-clip h-[100vh] sm:h-[100vh] md:h-[120vh] xl:h-[130vh]'>
-      <div className='flex justify-between flex-col md:flex-row gap-4 mt-32 md:mt-40 xl:mt-64 w-[90vw] sm:w-[85vw] mx-auto'>
+    <section id='artworks' className='relative h-[100svh] sm:h-[100vh] md:h-[120vh] xl:h-[130vh]'>
+      <div className='flex justify-between flex-col md:flex-row gap-4 mt-24 md:mt-40 xl:mt-64 w-[90vw] sm:w-[85vw] mx-auto'>
         <FadeInUpwardAnimation>
           <h1 className='text-[50px] sm:text-[60px] md:text-[70px] xl:text-[90px] leading-[65px] sm:leading-[80px] md:leading-[90px] xl:leading-[131px]  text-balance  tracking-tight'>
             Art Is The Visual <span className='italic font-medium'>Proof Of History</span> For Humanity
@@ -24,9 +24,9 @@ const Artworks = () => {
         autoPlay
         muted
         loop
-        className='w-full h-[60vh] md:h-[75vh] object-cover absolute -bottom-24 right-0 left-0 -z-[1]'
+        className='w-full h-[60vh] md:h-[75vh] object-cover absolute -bottom-30 right-0 left-0 -z-[1]'
       >
-        <source src='/section2.mp4' type='video/mp4' />
+        <source src='/section2-highres.mp4' type='video/mp4' />
         Your browser does not support the video tag.
       </video>
     </section>
