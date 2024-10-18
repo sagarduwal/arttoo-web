@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
 import platform from 'platform';
-import { tr } from 'framer-motion/client';
 
 const Steps = [
   {
