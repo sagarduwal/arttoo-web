@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
 import platform from 'platform';
+import { tr } from 'framer-motion/client';
 
 const Steps = [
   {
@@ -78,7 +79,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay
+              autoPlay={isIOS ? true : false}
               playsInline
               muted
               preload='auto'
@@ -102,7 +103,7 @@ const Learn: React.FC = () => {
                 }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title} {isIOS ? 'iOS' : 'Android'}
+                    {Steps[currentStep].title}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                     {Steps[currentStep].description}
