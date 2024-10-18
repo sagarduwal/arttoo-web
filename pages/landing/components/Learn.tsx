@@ -65,7 +65,7 @@ const Learn: React.FC = () => {
     window.addEventListener('scroll', handleScrollListener);
     return () => window.removeEventListener('scroll', handleScrollListener);
   }, [handleScroll]);
-
+  const isIOS = platform.os?.family === 'iOS';
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
@@ -74,7 +74,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay={platform.os?.toString().toLowerCase().includes('ios')}
+              autoPlay={isIOS}
               playsInline
               muted
               preload='auto'
