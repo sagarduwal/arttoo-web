@@ -1,7 +1,25 @@
 'use client';
 import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
+import { useEffect, useRef } from 'react';
 
 const Artworks = () => {
+  const artworkRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!artworkRef.current) return;
+      if (document.visibilityState === 'visible') {
+        artworkRef.current.play();
+      } else {
+        artworkRef.current.pause();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
   return (
     <section id='artworks' className='relative h-[100svh] sm:h-[100vh] md:h-[120vh] xl:h-[130vh] xl:min-h-[1340px]'>
       <div className='flex justify-between flex-col md:flex-row gap-4 mt-24 md:mt-40 xl:mt-64 w-[90vw] sm:w-[85vw] mx-auto'>
@@ -20,6 +38,7 @@ const Artworks = () => {
         </FadeInUpwardAnimation>
       </div>
       <video
+        ref={artworkRef}
         playsInline
         autoPlay
         muted
