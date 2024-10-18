@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
+import platform from 'platform';
 
 const Steps = [
   {
@@ -30,15 +31,7 @@ const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
-  useEffect(() => {
-    const updateWidth = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  }, []);
+
   const handleScroll = useCallback(
     throttle(() => {
       const video = videoRef.current;
@@ -79,7 +72,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay={windowWidth > 600 ? false : true}
+              autoPlay={platform.os?.toString().toLowerCase().includes('ios') ? true : false}
               playsInline
               muted
               preload='auto'
