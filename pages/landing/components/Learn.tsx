@@ -118,7 +118,7 @@ const Learn: React.FC = () => {
                     {Steps[currentStep].title}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
-                    {Steps[currentStep].description}
+                    {Steps[currentStep].description} {isIOS ? 'iOS' : 'Android'}
                   </p>
                 </div>
               </motion.div>
