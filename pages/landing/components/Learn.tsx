@@ -24,8 +24,9 @@ const Steps = [
   },
 ];
 
-const videoSrc = 'section3-highres1.mp4';
-// const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
+// const videoSrc = 'section3-highres2.mp4';
+const videoSrc =
+  'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
 const Learn: React.FC = () => {
@@ -55,7 +56,7 @@ const Learn: React.FC = () => {
       if (newStep !== -1 && newStep !== currentStep) {
         setCurrentStep(newStep);
       }
-    }, 200),
+    }, 100),
     [currentStep]
   );
 
