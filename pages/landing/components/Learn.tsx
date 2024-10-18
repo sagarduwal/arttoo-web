@@ -75,30 +75,17 @@ const Learn: React.FC = () => {
       <div className='sticky top-0 h-screen flex items-center justify-center'>
         <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
           <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
-            {isIOS ? (
-              <video
-                ref={videoRef}
-                className='w-full h-full object-cover relative z-10'
-                autoPlay
-                playsInline
-                muted
-                preload='auto'
-              >
-                <source src={videoSrc} type='video/mp4' />
-                <p>Your browser does not support the HTML5 Video element.</p>
-              </video>
-            ) : (
-              <video
-                ref={videoRef}
-                className='w-full h-full object-cover relative z-10'
-                playsInline
-                muted
-                preload='auto'
-              >
-                <source src={videoSrc} type='video/mp4' />
-                <p>Your browser does not support the HTML5 Video element.</p>
-              </video>
-            )}
+            <video
+              ref={videoRef}
+              className='w-full h-full object-cover relative z-10'
+              autoPlay={isIOS}
+              playsInline
+              muted
+              preload='auto'
+            >
+              <source src={videoSrc} type='video/mp4' />
+              <p>Your browser does not support the HTML5 Video element.</p>
+            </video>
           </div>
           <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
@@ -115,10 +102,10 @@ const Learn: React.FC = () => {
                 }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title}
+                    {Steps[currentStep].title} {isIOS ? 'iOS' : 'Android'}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
-                    {Steps[currentStep].description} {isIOS ? 'iOS' : 'Android'}
+                    {Steps[currentStep].description}
                   </p>
                 </div>
               </motion.div>
