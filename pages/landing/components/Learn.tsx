@@ -76,12 +76,6 @@ const Learn: React.FC = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // if (isIOS) {
-      //   video.pause()
-      // }
-      // else {
-      //   video.pause()
-      // }
       video.pause();
     }
   }, [isIOS]);
