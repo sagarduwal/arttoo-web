@@ -75,10 +75,11 @@ const Learn: React.FC = () => {
   useEffect(() => {
     const video = videoRef.current;
     if (video && isIOS) {
-      video.play().catch((error) => {
-        console.log('Autoplay was prevented, waiting for user interaction.', error);
-      });
-      video.pause();
+      if (isIOS) {
+        video.pause()
+      } else {
+        video.play()
+      }
     }
   }, [isIOS]);
 
@@ -90,7 +91,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-20'
-              autoPlay={isIOS ? true : false}
+              autoPlay={true}
               playsInline
               muted
               preload='auto'
@@ -109,12 +110,11 @@ const Learn: React.FC = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className='flex gap-4 items-start justify-start pt-16'
               >
-                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
-                  currentStep + 1
-                }`}</span>
+                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${currentStep + 1
+                  }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title}
+                    {Steps[currentStep].title}{isIOS.toString()}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                     {Steps[currentStep].description}
