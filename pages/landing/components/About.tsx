@@ -36,7 +36,7 @@ const About = () => {
       className='w-[90vw] mx-auto sm:w-[85vw] flex flex-col pb-8 justify-center gap-8 sm:gap-16'
     >
       <FadeInUpwardAnimation>
-        <h2 className='text-[42px] sm:text-[75px] lg:text-[100px] text-balance leading-[65px] sm:leading-[100px] lg:leading-[131px] max-w-[800px] mb-8'>
+        <h2 className='text-[42px] sm:text-[75px] lg:text-[100px] text-balance leading-[52px] sm:leading-[100px] lg:leading-[131px] max-w-[800px] mb-8'>
           Your investments are <span className='italic font-medium'>secured</span> with us
         </h2>
       </FadeInUpwardAnimation>
