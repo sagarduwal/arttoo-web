@@ -24,7 +24,7 @@ const Steps = [
   },
 ];
 
-const videoSrc = 'section3-highres.mp4';
+const videoSrc = 'section3-highres1.mp4';
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
@@ -69,7 +69,7 @@ const Learn: React.FC = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    setIsIOS(platform.os?.family?.toString().toLocaleLowerCase() === 'ios' ? true : false);  // Detect if the OS is iOS
+    setIsIOS(platform.os?.family?.toString().toLowerCase() === 'ios' ? true : false);  // Detect if the OS is iOS
   }, [platform]);
 
   useEffect(() => {
@@ -78,6 +78,7 @@ const Learn: React.FC = () => {
       video.play().catch((error) => {
         console.log('Autoplay was prevented, waiting for user interaction.', error);
       });
+      video.pause();
     }
   }, [isIOS]);
 
