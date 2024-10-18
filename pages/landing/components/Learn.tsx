@@ -50,7 +50,7 @@ const Learn: React.FC = () => {
           setCurrentStep(newStep);
         }
       }
-    }, 100),
+    }, 100), // Throttling the scroll event every 100ms
     [currentStep]
   );
 
@@ -66,13 +66,13 @@ const Learn: React.FC = () => {
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
-        <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start justify-between lg:items-center'>
-          <div className='w-full lg:w-1/2 aspect-square order-2 lg:order-1'>
+        <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
+          <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
+              // autoPlay
               playsInline
-              autoPlay
               muted
               preload='auto'
             >
@@ -80,7 +80,7 @@ const Learn: React.FC = () => {
               <p>Your browser does not support the HTML5 Video element.</p>
             </video>
           </div>
-          <div className='flex flex-col w-full lg:w-1/2 lg:pl-8 order-1 lg:order-2 pt-10 lg:pt-0'>
+          <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
               <motion.div
                 key={currentStep}
