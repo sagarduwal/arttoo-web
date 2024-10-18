@@ -68,7 +68,7 @@ const Learn: React.FC = () => {
   }, [handleScroll]);
   useEffect(() => {
     setIsIOS(platform.os?.family === 'iOS');
-  }, []);
+  }, [platform.os]);
 
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
