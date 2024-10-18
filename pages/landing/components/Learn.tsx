@@ -71,17 +71,29 @@ const Learn: React.FC = () => {
       <div className='sticky top-0 h-screen flex items-center justify-center'>
         <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
           <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
-            <video
-              ref={videoRef}
-              className='w-full h-full object-cover relative z-10'
-              autoPlay={isIOS}
-              playsInline
-              muted
-              preload='auto'
-            >
-              <source src={videoSrc} type='video/mp4' />
-              <p>Your browser does not support the HTML5 Video element.</p>
-            </video>
+            {isIOS ? (
+              <video
+                ref={videoRef}
+                className='w-full h-full object-cover relative z-10'
+                playsInline
+                muted
+                preload='auto'
+              >
+                <source src={videoSrc} type='video/mp4' />
+                <p>Your browser does not support the HTML5 Video element.</p>
+              </video>
+            ) : (
+              <video
+                ref={videoRef}
+                className='w-full h-full object-cover relative z-10'
+                playsInline
+                muted
+                preload='auto'
+              >
+                <source src={videoSrc} type='video/mp4' />
+                <p>Your browser does not support the HTML5 Video element.</p>
+              </video>
+            )}
           </div>
           <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
