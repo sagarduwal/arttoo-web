@@ -31,6 +31,7 @@ const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isIOS, setIsIOS] = useState(false);
 
   const handleScroll = useCallback(
     throttle(() => {
@@ -65,7 +66,10 @@ const Learn: React.FC = () => {
     window.addEventListener('scroll', handleScrollListener);
     return () => window.removeEventListener('scroll', handleScrollListener);
   }, [handleScroll]);
-  const isIOS = platform.os?.family === 'iOS';
+  useEffect(() => {
+    setIsIOS(platform.os?.family === 'iOS');
+  }, []);
+
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
@@ -111,7 +115,7 @@ const Learn: React.FC = () => {
                 }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title} {isIOS ? 'iOS' : 'Android'}
+                    {Steps[currentStep].title}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                     {Steps[currentStep].description}
