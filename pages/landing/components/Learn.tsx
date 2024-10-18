@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
-// import platform from 'platform';
+import platform from 'platform';
 
 const Steps = [
   {
@@ -65,23 +65,44 @@ const Learn: React.FC = () => {
     window.addEventListener('scroll', handleScrollListener);
     return () => window.removeEventListener('scroll', handleScrollListener);
   }, [handleScroll]);
-  // const isIOS = platform.os?.family === 'iOS';
+  const isIOS = platform.os?.family === 'iOS';
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
         <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
           <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
-            <video
-              ref={videoRef}
-              className='w-full h-full object-cover relative z-10'
-              autoPlay
-              playsInline
-              muted
-              preload='auto'
-            >
-              <source src={videoSrc} type='video/mp4' />
-              <p>Your browser does not support the HTML5 Video element.</p>
-            </video>
+            {isIOS ? (
+              <>
+                <video
+                  ref={videoRef}
+                  className='w-full h-full object-cover relative z-10'
+                  autoPlay
+                  playsInline
+                  muted
+                  preload='auto'
+                >
+                  <source src={videoSrc} type='video/mp4' />
+                  <p>Your browser does not support the HTML5 Video element.</p>
+                </video>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates quidem velit dolore adipisci
+                  blanditiis ut eveniet consequatur, cumque aliquam voluptatibus sequi amet modi totam. Optio explicabo
+                  velit voluptatem nemo aspernatur iste aliquid dolores modi odio dolorum reiciendis necessitatibus
+                  accusantium cum voluptates, minus excepturi labore quia fuga natus, nulla vero. Fugiat.
+                </p>
+              </>
+            ) : (
+              <video
+                ref={videoRef}
+                className='bg-red-400 w-full h-full object-cover relative z-10'
+                playsInline
+                muted
+                preload='auto'
+              >
+                <source src={videoSrc} type='video/mp4' />
+                <p>Your browser does not support the HTML5 Video element.</p>
+              </video>
+            )}
           </div>
           <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
