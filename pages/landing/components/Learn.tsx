@@ -24,8 +24,9 @@ const Steps = [
   },
 ];
 
-// const videoSrc = '/steps-43.mp4';
 const videoSrc = 'section3-highres.mp4';
+// const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
+// const videoSrc = 'steps-43.mp4';
 
 const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -54,7 +55,7 @@ const Learn: React.FC = () => {
       if (newStep !== -1 && newStep !== currentStep) {
         setCurrentStep(newStep);
       }
-    }, 100),
+    }, 200),
     [currentStep]
   );
 
@@ -66,9 +67,19 @@ const Learn: React.FC = () => {
     window.addEventListener('scroll', handleScrollListener);
     return () => window.removeEventListener('scroll', handleScrollListener);
   }, [handleScroll]);
+
   useEffect(() => {
-    setIsIOS(platform.os?.family === 'iOS');
-  }, [platform.os]);
+    setIsIOS(platform.os?.family?.toString().toLocaleLowerCase() === 'ios' ? true : false);  // Detect if the OS is iOS
+  }, [platform]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && isIOS) {
+      video.play().catch((error) => {
+        console.log('Autoplay was prevented, waiting for user interaction.', error);
+      });
+    }
+  }, [isIOS]);
 
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
@@ -78,7 +89,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay={isIOS}
+              autoPlay={isIOS ? true : false}
               playsInline
               muted
               preload='auto'
@@ -97,12 +108,11 @@ const Learn: React.FC = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className='flex gap-4 items-start justify-start pt-16'
               >
-                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
-                  currentStep + 1
-                }`}</span>
+                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${currentStep + 1
+                  }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
-                    {Steps[currentStep].title} {isIOS ? 'iOS' : 'Android'}
+                    {Steps[currentStep].title}
                   </h4>
                   <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                     {Steps[currentStep].description}
