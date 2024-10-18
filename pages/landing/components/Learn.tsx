@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import throttle from 'lodash.throttle';
-import platform from 'platform';
+// import platform from 'platform';
 
 const Steps = [
   {
@@ -65,7 +65,7 @@ const Learn: React.FC = () => {
     window.addEventListener('scroll', handleScrollListener);
     return () => window.removeEventListener('scroll', handleScrollListener);
   }, [handleScroll]);
-  const isIOS = platform.os?.family === 'iOS';
+  // const isIOS = platform.os?.family === 'iOS';
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
