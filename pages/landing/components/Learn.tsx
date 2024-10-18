@@ -39,19 +39,21 @@ const Learn: React.FC = () => {
 
       if (!video || !container) return;
 
-      if (video.duration) {
-        const { top, height } = container.getBoundingClientRect();
-        const percentScrolled = Math.max(0, Math.min(1, -top / (height - window.innerHeight)));
-        video.currentTime = video.duration * percentScrolled;
+      const { top, height } = container.getBoundingClientRect();
+      const percentScrolled = Math.max(0, Math.min(1, -top / (height - window.innerHeight)));
 
-        const newStep = Steps.findIndex(
-          (step) => percentScrolled >= step.progress.min && percentScrolled < step.progress.max
-        );
-        if (newStep !== -1 && newStep !== currentStep) {
-          setCurrentStep(newStep);
-        }
+      if (video.duration) {
+        video.currentTime = video.duration * percentScrolled;
       }
-    }, 100), // Throttling the scroll event every 100ms
+
+      const newStep = Steps.findIndex(
+        (step) => percentScrolled >= step.progress.min && percentScrolled < step.progress.max
+      );
+
+      if (newStep !== -1 && newStep !== currentStep) {
+        setCurrentStep(newStep);
+      }
+    }, 100),
     [currentStep]
   );
 
@@ -72,7 +74,7 @@ const Learn: React.FC = () => {
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
-              autoPlay={platform.os?.toString().toLowerCase().includes('ios') ? true : false}
+              autoPlay={platform.os?.toString().toLowerCase().includes('ios')}
               playsInline
               muted
               preload='auto'
