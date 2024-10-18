@@ -3,7 +3,7 @@ import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
 
 const Artworks = () => {
   return (
-    <section id='artworks' className='relative h-[100svh] sm:h-[100vh] md:h-[120vh] xl:h-[130vh]'>
+    <section id='artworks' className='relative h-[100svh] sm:h-[100vh] md:h-[120vh] xl:h-[130vh] xl:min-h-[1340px]'>
       <div className='flex justify-between flex-col md:flex-row gap-4 mt-24 md:mt-40 xl:mt-64 w-[90vw] sm:w-[85vw] mx-auto'>
         <FadeInUpwardAnimation>
           <h1 className='text-[50px] sm:text-[60px] md:text-[70px] xl:text-[90px] leading-[65px] sm:leading-[80px] md:leading-[90px] xl:leading-[131px]  text-balance  tracking-tight'>
