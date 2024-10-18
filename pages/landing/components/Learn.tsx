@@ -24,8 +24,8 @@ const Steps = [
   },
 ];
 
-const videoSrc = 'section3-highres.mp4';
-//const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
+// const videoSrc = 'section3-highres.mp4';
+const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
 const Learn: React.FC = () => {
@@ -112,9 +112,8 @@ const Learn: React.FC = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className='flex gap-4 items-start justify-start pt-16'
               >
-                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
-                  currentStep + 1
-                }`}</span>
+                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${currentStep + 1
+                  }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
                     {Steps[currentStep].title}
