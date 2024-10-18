@@ -69,7 +69,7 @@ const Learn: React.FC = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    setIsIOS(platform.os?.family?.toString().toLocaleLowerCase() === 'ios' ? true : false);  // Detect if the OS is iOS
+    setIsIOS(platform.os?.family?.toString().toLocaleLowerCase() === 'ios' ? true : false); // Detect if the OS is iOS
   }, [platform]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const Learn: React.FC = () => {
           <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
             <video
               ref={videoRef}
-              className='w-full h-full object-cover relative z-10'
+              className='w-full h-full object-cover relative z-20'
               autoPlay={isIOS ? true : false}
               playsInline
               muted
@@ -108,8 +108,9 @@ const Learn: React.FC = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className='flex gap-4 items-start justify-start pt-16'
               >
-                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${currentStep + 1
-                  }`}</span>
+                <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${
+                  currentStep + 1
+                }`}</span>
                 <div className='flex flex-col gap-2'>
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
                     {Steps[currentStep].title}
