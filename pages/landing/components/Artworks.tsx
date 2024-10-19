@@ -37,7 +37,7 @@ const Artworks = () => {
           </p>
         </FadeInUpwardAnimation>
       </div>
-      {/* <video
+      <video
         ref={artworkRef}
         playsInline
         autoPlay
@@ -47,7 +47,7 @@ const Artworks = () => {
       >
         <source src='/section2-highres.webm' type='video/webm' />
         Your browser does not support the video tag.
-      </video> */}
+      </video>
     </section>
   );
 };
