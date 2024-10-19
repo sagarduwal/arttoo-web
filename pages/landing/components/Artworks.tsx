@@ -37,7 +37,7 @@ const Artworks = () => {
           </p>
         </FadeInUpwardAnimation>
       </div>
-      <video
+      {/* <video
         ref={artworkRef}
         playsInline
         autoPlay
@@ -45,9 +45,9 @@ const Artworks = () => {
         loop
         className='w-full h-[60vh] md:h-[75vh] object-cover absolute -bottom-30 right-0 left-0 -z-[1]'
       >
-        <source src='/section2-highres.mp4' type='video/mp4' />
+        <source src='/section2-highres.webm' type='video/webm' />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
     </section>
   );
 };

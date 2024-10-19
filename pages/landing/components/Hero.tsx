@@ -24,10 +24,10 @@ const Hero = () => {
   return (
     <section className=' flex flex-col w-screen h-screen sticky top-0 video'>
       <div className='relative w-full h-full'>
-        <video playsInline autoPlay muted loop className='h-full w-full object-cover' ref={bannerRef}>
+        {/* <video playsInline autoPlay muted loop className='h-full w-full object-cover' ref={bannerRef}>
           <source src='/hero.mp4' type='video/mp4' />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
         <button
           className='sm:block hidden absolute animate-bounce bottom-10 left-1/2 transform -translate-x-1/2'
           onClick={() => ScrollTo('artworks')}
