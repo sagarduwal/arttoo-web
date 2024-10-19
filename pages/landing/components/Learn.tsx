@@ -26,9 +26,9 @@ const Steps = [
 
 // const videoSrc = 'section3-highres.mp4';
 const videoSrcMob =
-  'https://cdn.discordapp.com/attachments/1296671100247212073/1297079530208362506/section3-highres-8s_15.webm?ex=67149ef2&is=67134d72&hm=0bad8e9e2409daae1c526756f5f5f4e8f9c29192b52a312f579f975d9e2a4636&';
+  'https://cdn.discordapp.com/attachments/1296671100247212073/1297082262294368286/section3-highres-8s_1.webm?ex=6714a17d&is=67134ffd&hm=5b6c84ddc06843baac072c743cc16e99ddc8ea6d9f15d8a7f72cbec50c3204b0&';
 const videoSrc =
-  'https://cdn.discordapp.com/attachments/1296671100247212073/1297077216857034752/section3-highres-8s_14.mp4?ex=67149ccb&is=67134b4b&hm=21579cd9e0463906f3a45170185d3eac2c85fedd0280a068d7715678b7f04a2b&';
+  'https://cdn.discordapp.com/attachments/1296671100247212073/1297082288768684032/section3-highres-8s_15.mp4?ex=6714a184&is=67135004&hm=30d2fa86e92f53460da568c941a349599ac483af1110712eeb441a76664ce2c0&';
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
