@@ -25,6 +25,8 @@ const Steps = [
 ];
 
 // const videoSrc = 'section3-highres.mp4';
+const videoSrcMob =
+  'https://cdn.discordapp.com/attachments/1296671100247212073/1297079530208362506/section3-highres-8s_15.webm?ex=67149ef2&is=67134d72&hm=0bad8e9e2409daae1c526756f5f5f4e8f9c29192b52a312f579f975d9e2a4636&';
 const videoSrc =
   'https://cdn.discordapp.com/attachments/1296671100247212073/1297077216857034752/section3-highres-8s_14.mp4?ex=67149ccb&is=67134b4b&hm=21579cd9e0463906f3a45170185d3eac2c85fedd0280a068d7715678b7f04a2b&';
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
@@ -94,6 +96,7 @@ const Learn: React.FC = () => {
               muted
               preload='auto'
             >
+              <source src={videoSrcMob} type="video/webm; codecs='vp8, vorbis'" />
               <source src={videoSrc} type='video/mp4' />
               <p>Your browser does not support the HTML5 Video element.</p>
             </video>
