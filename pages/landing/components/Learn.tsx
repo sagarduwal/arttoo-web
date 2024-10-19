@@ -25,8 +25,8 @@ const Steps = [
 ];
 
 // const videoSrc = 'section3-highres.mp4';
-const videoSrc =
-  'https://cdn.discordapp.com/attachments/1227451731709923450/1297049153465221130/section3-highres_30.mp4?ex=671482a8&is=67133128&hm=35292220c4e773db6eb376ba738b7323c29e2dc84ab9f76a19979b11accba154&';
+const videoSrc = 'section2-highres.webm';
+
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
