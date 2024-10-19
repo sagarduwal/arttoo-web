@@ -92,7 +92,6 @@ const Learn: React.FC = () => {
               playsInline
               muted
               preload='auto'
-              controls
             >
               <source src={videoSrc} type='video/mp4' />
               <p>Your browser does not support the HTML5 Video element.</p>
