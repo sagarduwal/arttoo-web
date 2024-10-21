@@ -146,20 +146,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Steps = [
   {
-    title: "Explore",
+    title: 'Explore',
     progress: { min: 0, max: 0.53 },
-    description: "Browse a collection of iconic masterpieces carefully handpicked by our expert curators from Sotheby's and Christie's. ",
+    description:
+      "Browse a collection of iconic masterpieces carefully handpicked by our expert curators from Sotheby's and Christie's. ",
   },
   {
-    title: "Invest",
+    title: 'Invest',
     progress: { min: 0.53, max: 0.87 },
 
-    description: "Start investing in fractional shares of legacy masterpieces with no auction house markups, no gallery markups, no hidden true-up fees.",
+    description:
+      'Start investing in fractional shares of legacy masterpieces with no auction house markups, no gallery markups, no hidden true-up fees.',
   },
   {
-    title: "Earn",
+    title: 'Earn',
     progress: { min: 0.87, max: 0.988 },
-    description: "Watch your investment grow in value through auction exits, rents from exhibitions in museums and galleries, loyalty from NFT recreations and consumer merchandise and many more..",
+    description:
+      'Watch your investment grow in value through auction exits, rents from exhibitions in museums and galleries, loyalty from NFT recreations and consumer merchandise and many more..',
   },
 ];
 
@@ -195,11 +198,11 @@ const Learn = () => {
         setVideoLoaded(true);
         video.currentTime = 10; // Set to first frame
       };
-      video.addEventListener("loadedmetadata", handleLoadedMetadata);
-      return () => video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      return () => video.removeEventListener('loadedmetadata', handleLoadedMetadata);
     }
 
-    return () => { };
+    return () => {};
   }, []);
 
   useGSAP(() => {
@@ -216,8 +219,8 @@ const Learn = () => {
     video.addEventListener("loadedmetadata", handleLoadedMetadata);
     ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "top 10%", // Start when the top of the container hits 50% of the viewport
-      end: "bottom bottom", // End when the bottom of the container hits 50% of the viewport
+      start: 'top 10%', // Start when the top of the container hits 50% of the viewport
+      end: 'bottom bottom', // End when the bottom of the container hits 50% of the viewport
       pin: leftRef.current,
       onUpdate: (e) => {
         const currentTime = performance.now();
@@ -260,8 +263,12 @@ const Learn = () => {
                   <div className='flex gap-4 items-start justify-center'>
                     <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${index + 1}`}</span>
                     <div className='flex flex-col gap-2'>
-                      <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>{item.title}</h4>
-                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>{item.description}</p>
+                      <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
+                        {item.title}
+                      </h4>
+                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 )}
