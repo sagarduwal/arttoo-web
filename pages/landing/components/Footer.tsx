@@ -86,11 +86,11 @@ const Footer = () => {
   const { email, setEmail, loading, message, messageError, handleSubmit } = useEmailSubmit();
 
   return (
-    <footer className='bg-black '>
-      <div className='w-[90vw] mx-auto sm:w-[85vw] py-16'>
-        <div className='flex flex-col md:flex-row md:justify-between gap-8'>
+    <footer className='bg-black'>
+      <div className='max-w-screen-2xl w-[90vw] mx-auto sm:w-[85vw] py-16'>
+        <div className='flex flex-col lg:flex-row lg:justify-between gap-8'>
           <div className='flex flex-col gap-8'>
-            <h3 className='text-white md:text-[60px] text-[30px] leading-[39.3px] sm:text-[44px] sm:leading-[51.23px] font-medium md:leading-[78.6px]'>
+            <h3 className='text-white  text-[30px] sm:text-[44px] lg:text-[60px] leading-[39.3px] sm:leading-[51.23px] lg:leading-[78.6px] font-medium '>
               Ready to Own <span className='italic'>Your Piece of History?</span>
             </h3>
 
@@ -105,7 +105,7 @@ const Footer = () => {
                   onChange={setEmail}
                   disabled={loading}
                 />
-                <button disabled={loading} className='bg-[#E4FF1A] px-4 py-2 rounded-full text-black'>
+                <button disabled={loading} className='bg-white px-4 py-2 rounded-full text-black'>
                   Submit
                 </button>
               </form>
@@ -116,7 +116,7 @@ const Footer = () => {
               {messageError && <p className='text-red-600 text-sm'>{messageError}</p>}
             </div>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-4 min-w-48'>
             <p className='text-2xl text-white leading-[19.2px] font-light'>Follow us on</p>
             <div className='inline-flex gap-2'>
               <a href='https://x.com/arttoonetwork' target='_blank'>

@@ -21,6 +21,7 @@ const LandingPage = () => {
   //   [0, 0.9, 0.99, 1],
   //   ["#FFFFFF", "#FFFFFF", "#000000", "#000000"]
   // );
+
   const navbarBgColor = useTransform(
     scrollYProgress,
     [0, 0.02, 0.99, 1],

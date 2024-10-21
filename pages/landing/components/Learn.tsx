@@ -25,10 +25,8 @@ const Steps = [
 ];
 
 // const videoSrc = 'section3-highres.mp4';
-const videoSrcMob =
-  'https://cdn.discordapp.com/attachments/1296671100247212073/1297082262294368286/section3-highres-8s_1.webm?ex=6714a17d&is=67134ffd&hm=5b6c84ddc06843baac072c743cc16e99ddc8ea6d9f15d8a7f72cbec50c3204b0&';
-const videoSrc =
-  'https://cdn.discordapp.com/attachments/1296671100247212073/1297082288768684032/section3-highres-8s_15.mp4?ex=6714a184&is=67135004&hm=30d2fa86e92f53460da568c941a349599ac483af1110712eeb441a76664ce2c0&';
+const videoSrcMob = 'section3-highres_15.webm';
+const videoSrc = 'section3-highres_15.mp4';
 // const videoSrc = 'https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4';
 // const videoSrc = 'steps-43.mp4';
 
@@ -86,11 +84,11 @@ const Learn: React.FC = () => {
   return (
     <section ref={containerRef} className='relative h-[300vh]'>
       <div className='sticky top-0 h-screen flex items-center justify-center'>
-        <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
-          <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
+        <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start justify-between lg:items-center'>
+          <div className='bg-white w-full lg:w-1/2 aspect-square order-2 lg:order-1'>
             <video
               ref={videoRef}
-              className='w-full h-full object-cover relative z-10'
+              className='w-full h-full object-contain relative z-10'
               autoPlay
               playsInline
               muted
@@ -101,7 +99,7 @@ const Learn: React.FC = () => {
               <p>Your browser does not support the HTML5 Video element.</p>
             </video>
           </div>
-          <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
+          <div className='flex flex-col w-full lg:w-1/2 lg:pl-8 order-1 lg:order-2 pt-10 lg:pt-0'>
             <AnimatePresence mode='wait'>
               <motion.div
                 key={currentStep}
@@ -118,7 +116,7 @@ const Learn: React.FC = () => {
                   <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
                     {Steps[currentStep].title}
                   </h4>
-                  <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                  <p className='text-[16px] leading-[20.4px] md:text-[20px] md:leading-[26.2px]'>
                     {Steps[currentStep].description}
                   </p>
                 </div>
