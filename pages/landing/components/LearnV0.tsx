@@ -27,7 +27,7 @@ const Steps = [
 
 const Learn: React.FC = () => {
   return (
-    <section className='w-[90vw] sm:w-[85vw] mx-auto relative z-10 -mt-[80px] sm:mt-0 md:py-10 lg:py-20'>
+    <section className='w-[90vw] sm:w-[85vw] mx-auto relative z-10 -mt-[80px] md:pb-10 lg:pb-20'>
       {Steps.map((step, index) => (
         <div key={index} className={`flex flex-col lg:flex-row w-full`}>
           <div
