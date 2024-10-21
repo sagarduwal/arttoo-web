@@ -7,7 +7,7 @@ import Hero from './components/Hero';
 import Learn from './components/LearnV0';
 import Header from './components/Header';
 import { useScroll, useTransform } from 'framer-motion';
-import LazyLoadComponent from './components/LazyLoading';
+// import LazyLoadComponent from './components/LazyLoading';
 
 const LandingPage = () => {
   const main = useRef<HTMLElement>(null);
