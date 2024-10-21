@@ -38,7 +38,7 @@ const Learn: React.FC = () => {
             <Image width='600' height='600' className='object-contain' src={step.image} alt={step.title} />
           </div>
           <div
-            className={`w-full lg:w-1/2 p-8 flex items-center justify-center ${
+            className={`w-full lg:w-1/2 p-8 flex items-center justify-center order-first ${
               index % 2 === 0 ? 'lg:order-last' : 'lg:order-first'
             }`}
           >
