@@ -119,7 +119,7 @@ const Footer = () => {
           <div className='flex flex-col gap-4 min-w-48'>
             <p className='text-2xl text-white leading-[19.2px] font-light'>Follow us on</p>
             <div className='inline-flex gap-2'>
-              <a href='https://x.com/arttoonetwork' target='_blank'>
+              <a href='https://x.com/arttoo_official' target='_blank'>
                 <svg className='h6 w-6' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'>
                   <path
                     fill='#fff'
