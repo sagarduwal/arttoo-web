@@ -43,6 +43,7 @@ const Artworks = forwardRef<HTMLDivElement, ArtworksProps>((props, ref) => {
         autoPlay
         muted
         loop
+        poster='/sec_2II.png'
         className='w-full h-[70svh] md:h-[60svh] lg:h-[70vh] xl:h-auto object-cover lg:-mt-[120px] mt-[-80px] xl:-mt-[160px] xl:min-h-[980px]'
       >
         <source src='/section2-highres.webm' type='video/webm' />

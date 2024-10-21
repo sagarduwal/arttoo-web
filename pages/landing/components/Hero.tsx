@@ -30,7 +30,15 @@ const Hero = () => {
   return (
     <section className='relative h-svh w-full'>
       <div className='fixed inset-0 bg-black'>
-        <video playsInline autoPlay muted loop className='h-full w-full object-cover' ref={bannerRef}>
+        <video
+          playsInline
+          autoPlay
+          muted
+          loop
+          className='h-full w-full object-cover'
+          poster='/hero.jpg'
+          ref={bannerRef}
+        >
           <source src='/hero.mp4' type='video/mp4' />
           Your browser does not support the video tag.
         </video>
