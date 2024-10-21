@@ -131,34 +131,36 @@
 
 // export default Learn;
 
-
-"use client";
+'use client';
 // import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
 // eslint-disable
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
-// import "./test.css";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useEffect, useRef, useState } from 'react';
+
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 const Steps = [
   {
-    title: "Explore",
+    title: 'Explore',
     progress: { min: 0, max: 0.53 },
-    description: "Browse a collection of iconic masterpieces carefully handpicked by our expert curators from Sotheby's and Christie's. ",
+    description:
+      "Browse a collection of iconic masterpieces carefully handpicked by our expert curators from Sotheby's and Christie's. ",
   },
   {
-    title: "Invest",
+    title: 'Invest',
     progress: { min: 0.53, max: 0.87 },
 
-    description: "Start investing in fractional shares of legacy masterpieces with no auction house markups, no gallery markups, no hidden true-up fees.",
+    description:
+      'Start investing in fractional shares of legacy masterpieces with no auction house markups, no gallery markups, no hidden true-up fees.',
   },
   {
-    title: "Earn",
+    title: 'Earn',
     progress: { min: 0.87, max: 0.988 },
-    description: "Watch your investment grow in value through auction exits, rents from exhibitions in museums and galleries, loyalty from NFT recreations and consumer merchandise and many more..",
+    description:
+      'Watch your investment grow in value through auction exits, rents from exhibitions in museums and galleries, loyalty from NFT recreations and consumer merchandise and many more..',
   },
 ];
 
@@ -174,7 +176,7 @@ const Learn = () => {
   const [progression, setProgression] = useState<number>(0);
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    window.addEventListener("resize", (e) => {
+    window.addEventListener('resize', (e) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       setwindowWidth((p) => window.innerWidth);
     });
@@ -184,11 +186,11 @@ const Learn = () => {
         setVideoLoaded(true);
         video.currentTime = 10; // Set to first frame
       };
-      video.addEventListener("loadedmetadata", handleLoadedMetadata);
-      return () => video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      return () => video.removeEventListener('loadedmetadata', handleLoadedMetadata);
     }
 
-    return () => { };
+    return () => {};
   }, []);
 
   useGSAP(() => {
@@ -199,11 +201,11 @@ const Learn = () => {
       console.log({ set: 3 });
       video.currentTime = 3; // Set to first frame
     };
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
     ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "top 10%", // Start when the top of the container hits 50% of the viewport
-      end: "bottom bottom", // End when the bottom of the container hits 50% of the viewport
+      start: 'top 10%', // Start when the top of the container hits 50% of the viewport
+      end: 'bottom bottom', // End when the bottom of the container hits 50% of the viewport
       pin: leftRef.current,
       onUpdate: (e) => {
         if (video && video.duration) {
@@ -228,7 +230,8 @@ const Learn = () => {
             <source
               type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
               // src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
-              src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'></source>
+              src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'
+            ></source>
             Your browser does not support the video tag.
           </video>
         </div>
@@ -240,8 +243,12 @@ const Learn = () => {
                   <div className='flex gap-4 items-start justify-center'>
                     <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${index + 1}`}</span>
                     <div className='flex flex-col gap-2'>
-                      <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>{item.title}</h4>
-                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>{item.description}</p>
+                      <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
+                        {item.title}
+                      </h4>
+                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 )}
