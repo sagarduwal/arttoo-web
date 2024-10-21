@@ -3,9 +3,6 @@
  * @type {import('next').NextConfig}
  */
 
-const nextConfig = {
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-};
+const nextConfig = {};
 
 export default nextConfig;
