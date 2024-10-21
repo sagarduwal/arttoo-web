@@ -21,7 +21,7 @@ const Artworks = forwardRef<HTMLDivElement, ArtworksProps>((props, ref) => {
     };
   }, []);
   return (
-    <section ref={ref} id='artworks' className='relative min-h-[100svh] md:h-[80vh] xl:h-auto'>
+    <section ref={ref} id='artworks' className='relative min-h-[100svh] md:min-h-[80vh] xl:h-auto'>
       <div className='flex justify-between flex-col lg:flex-row gap-4 pt-20 md:pt-24 lg:pt-32 max-w-screen-2xl w-[90vw] sm:w-[85vw] mx-auto'>
         <FadeInUpwardAnimation>
           <h1 className='text-[50px] md:text-[60px] lg:text-[70px] xl:text-[90px] leading-[65px] sm:leading-[80px] lg:leading-[84px] xl:leading-[131px]  text-balance  tracking-tight'>
