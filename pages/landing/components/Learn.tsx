@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import React, { useEffect, useRef, useState, useCallback } from 'react';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import throttle from 'lodash.throttle';
@@ -131,13 +132,14 @@
 
 // export default Learn;
 
-'use client';
-// import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-// eslint-disable
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef, useState } from 'react';
+
+"use client";
+import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useEffect, useRef, useState } from "react";
+import platform from 'platform';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -168,16 +170,26 @@ const Learn = () => {
   const containerRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [windowWidth, setwindowWidth] = useState<number>(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [progression, setProgression] = useState<number>(0);
+  const [isAndroid, setIsAndroid] = useState<boolean>(false);
+  const [isIOS, setIsIOS] = useState(false);
+
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    window.addEventListener('resize', (e) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setIsIOS(platform.os?.family?.toString().toLowerCase() === 'ios' ? true : false); // Detect if the OS is iOS
+  }, [platform]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+    }
+  }, [isIOS]);
+
+  useEffect(() => {
+    setIsAndroid(/Android/i.test(navigator.userAgent));
+    window.addEventListener("resize", (e) => {
       setwindowWidth((p) => window.innerWidth);
     });
     const video = videoRef.current;
@@ -201,23 +213,35 @@ const Learn = () => {
       console.log({ set: 3 });
       video.currentTime = 3; // Set to first frame
     };
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    let lastUpdateTime = 0;
+    const updateInterval = isAndroid ? 100 : 0; // Throttle updates on Android
+
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top 10%', // Start when the top of the container hits 50% of the viewport
       end: 'bottom bottom', // End when the bottom of the container hits 50% of the viewport
       pin: leftRef.current,
       onUpdate: (e) => {
+        const currentTime = performance.now();
+        if (currentTime - lastUpdateTime < updateInterval) return;
+
         if (video && video.duration) {
           const totalTime = video.duration;
           const progress = e.progress;
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           setProgression((p) => progress);
           requestAnimationFrame(() => {
-            console.log({ time: totalTime * progress });
             video.currentTime = totalTime * progress;
           });
+          if ("requestVideoFrameCallback" in HTMLVideoElement.prototype) {
+            (video).requestVideoFrameCallback(() => {
+              video.currentTime = totalTime * progress;
+            });
+          } else {
+            video.currentTime = totalTime * progress;
+          }
         }
+        lastUpdateTime = currentTime;
       },
     });
   }, []);
@@ -226,12 +250,8 @@ const Learn = () => {
     <section ref={containerRef} className='  w-[90vw] mx-auto sm:w-[85vw] '>
       <div className=' flex flex-col md:flex-row'>
         <div className=' h-[50rem] md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
-          <video ref={videoRef} muted className='w-full' preload='auto'>
-            <source
-              type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-              // src="https://www.apple.com/media/us/mac-pro/2013/16C1b6b5-1d91-4fef-891e-ff2fc1c1bb58/videos/macpro_main_desktop.mp4"
-              src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'
-            ></source>
+          <video autoPlay ref={videoRef} muted className='w-full' preload='auto'>
+            <source type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'></source>
             Your browser does not support the video tag.
           </video>
         </div>
