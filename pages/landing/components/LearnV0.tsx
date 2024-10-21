@@ -42,7 +42,7 @@ const Learn: React.FC = () => {
               index % 2 === 0 ? 'lg:order-last' : 'lg:order-first'
             }`}
           >
-            <div className='flex gap-4 items-start justify-start pt-8 lg:pt-16'>
+            <div className='flex gap-4 items-start justify-start sm:pt-8 lg:pt-16'>
               <span className='text-black/30 text-[40px] italic leading-[52.4px] lg:mt-4'>{`0${index + 1}`}</span>
               <div className='flex flex-col gap-2'>
                 <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>

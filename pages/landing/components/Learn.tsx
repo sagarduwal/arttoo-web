@@ -132,13 +132,12 @@
 
 // export default Learn;
 
-
-"use client";
-import FadeInUpwardAnimation from "@/components/FadeInUpwardAnimation";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
+'use client';
+import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useEffect, useRef, useState } from 'react';
 import platform from 'platform';
 
 gsap.registerPlugin(useGSAP);
@@ -189,7 +188,7 @@ const Learn = () => {
 
   useEffect(() => {
     setIsAndroid(/Android/i.test(navigator.userAgent));
-    window.addEventListener("resize", (e) => {
+    window.addEventListener('resize', (e) => {
       setwindowWidth((p) => window.innerWidth);
     });
     const video = videoRef.current;
@@ -216,7 +215,7 @@ const Learn = () => {
     let lastUpdateTime = 0;
     const updateInterval = isAndroid ? 100 : 0; // Throttle updates on Android
 
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top 10%', // Start when the top of the container hits 50% of the viewport
@@ -233,8 +232,8 @@ const Learn = () => {
           requestAnimationFrame(() => {
             video.currentTime = totalTime * progress;
           });
-          if ("requestVideoFrameCallback" in HTMLVideoElement.prototype) {
-            (video).requestVideoFrameCallback(() => {
+          if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
+            video.requestVideoFrameCallback(() => {
               video.currentTime = totalTime * progress;
             });
           } else {
@@ -247,18 +246,21 @@ const Learn = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className='  w-[90vw] mx-auto sm:w-[85vw] '>
-      <div className=' flex flex-col md:flex-row'>
+    <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw]'>
+      <div className='flex flex-col md:flex-row'>
         <div className=' h-[50rem] md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
           <video autoPlay ref={videoRef} muted className='w-full' preload='auto'>
-            <source type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'></source>
+            <source
+              type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+              src='https://arttoo-web-sigma.vercel.app/section3-highres-8s_15.mp4'
+            ></source>
             Your browser does not support the video tag.
           </video>
         </div>
         <div className=' md:w-1/2 flex flex-col gap-8 justify-center md:z-1 '>
           {Steps.map((item, index) => {
             return (
-              <div key={index} className={`max-w-[800px]  h-screen flex justify-center items-start `}>
+              <div key={index} className={`max-w-[800px]  h-screen flex justify-center items-start`}>
                 {item.title && (
                   <div className='flex gap-4 items-start justify-center'>
                     <span className='text-black/30 text-[40px] italic leading-[52.4px] md:mt-4'>{`0${index + 1}`}</span>
@@ -266,7 +268,7 @@ const Learn = () => {
                       <h4 className='text-[50px] sm:text-[75px] md:text-[100px] text-balance leading-[65px] sm:leading-[100px] md:leading-[131px] italic font-medium'>
                         {item.title}
                       </h4>
-                      <p className=' text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
+                      <p className='text-[16px] leading-[20.4px] sm:text-[20px] sm:leading-[26.2px]'>
                         {item.description}
                       </p>
                     </div>
