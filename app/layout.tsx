@@ -5,6 +5,20 @@ import Head from 'next/head';
 export const metadata: Metadata = {
   title: 'Arttoo',
   description: 'Art Is The Visual Proof Of History For Humanity',
+  openGraph: {
+    type: 'website',
+    siteName: 'My Website',
+    title: 'Arttoo',
+    description: 'Art Is The Visual Proof Of History For Humanity',
+    url: 'https://arttoo.co.uk',
+    images: [
+      {
+        url: '/hero.jpg',
+        alt: 'Arttoo',
+      },
+    ],
+    locale: 'en_US',
+  },
 };
 
 export default function RootLayout({
