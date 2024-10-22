@@ -26,6 +26,9 @@ const Steps = [
 const videoSrc = '/section3-newest.mp4';
 console.log('Video source:', videoSrc);
 
+const SCROLL_HISTORY_SIZE = 3; // Reduce history size for faster response
+const THROTTLE_MS = 50; // Adjust throttle time
+
 const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -37,14 +40,38 @@ const Learn: React.FC = () => {
   const animationFrameRef = useRef<number | null>(null);
   const isScrollingRef = useRef(false);
 
+  // Add a ref to track the last update time
+  const lastUpdateTimeRef = useRef(Date.now());
+
+  const scrollHistoryRef = useRef<number[]>([]);
+  const isAndroidRef = useRef(false);
+
+  useEffect(() => {
+    isAndroidRef.current = /Android/i.test(navigator.userAgent);
+  }, []);
+
+  const getSmoothedScroll = useCallback((newScroll: number) => {
+    const history = scrollHistoryRef.current;
+    history.push(newScroll);
+    if (history.length > SCROLL_HISTORY_SIZE) {
+      history.shift();
+    }
+    // Use a weighted average, giving more importance to recent values
+    const weights = [0.5, 0.3, 0.2];
+    return history.reduce((sum, val, index) => sum + val * weights[index], 0);
+  }, []);
+
   const updateVideoTime = useCallback((percentScrolled: number) => {
     const video = videoRef.current;
     if (video && video.duration && isVideoLoaded) {
-      const targetTime = video.duration * percentScrolled;
+      const smoothedScroll = getSmoothedScroll(percentScrolled);
+      const targetTime = video.duration * smoothedScroll;
       video.currentTime = targetTime;
-      console.log('Updated video time:', targetTime);
+      const now = Date.now();
+      console.log(`Updated video time: ${targetTime.toFixed(2)}, Time since last update: ${now - lastUpdateTimeRef.current}ms`);
+      lastUpdateTimeRef.current = now;
     }
-  }, [isVideoLoaded]);
+  }, [isVideoLoaded, getSmoothedScroll]);
 
   const handleScroll = useCallback(() => {
     const video = videoRef.current;
@@ -78,7 +105,7 @@ const Learn: React.FC = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
       animationFrameRef.current = requestAnimationFrame(handleScroll);
-    }, 100),
+    }, isAndroidRef.current ? THROTTLE_MS * 4 : THROTTLE_MS),
     [handleScroll]
   );
 
@@ -175,7 +202,7 @@ const Learn: React.FC = () => {
               playsInline
               muted
               preload='auto'
-              style={{ opacity: 0.99 }}
+              style={{ opacity: 0.99, willChange: 'contents' }}
               crossOrigin='anonymous'
               poster="/arttoo-logo.png"
             >
