@@ -23,85 +23,152 @@ const Steps = [
   },
 ];
 
-
-// const videoSrcMob = '/section3-highres.mp4';
-const videoSrc = '/section3-highres.mp4';
+const videoSrc = '/section3-newest.mp4';
+console.log('Video source:', videoSrc);
 
 const Learn: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const stepsRef = useRef<HTMLDivElement | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [videoStatus, setVideoStatus] = useState('Not started');
   const lastScrollPositionRef = useRef(0);
+  const animationFrameRef = useRef<number | null>(null);
+  const isScrollingRef = useRef(false);
 
   const updateVideoTime = useCallback((percentScrolled: number) => {
     const video = videoRef.current;
-    if (video && video.duration) {
+    if (video && video.duration && isVideoLoaded) {
       const targetTime = video.duration * percentScrolled;
-      const currentTime = video.currentTime;
-      const smoothFactor = 0.2; // Adjusted for 50 fps
-      
-      video.currentTime = currentTime + (targetTime - currentTime) * smoothFactor;
+      video.currentTime = targetTime;
+      console.log('Updated video time:', targetTime);
     }
-  }, []);
+  }, [isVideoLoaded]);
 
-  const handleScroll = useCallback(
+  const handleScroll = useCallback(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+
+    if (!video || !container || !isVideoLoaded) return;
+
+    const { top, height } = container.getBoundingClientRect();
+    const percentScrolled = Math.max(0, Math.min(1, -top / (height - window.innerHeight)));
+
+    updateVideoTime(percentScrolled);
+
+    const newStep = Math.min(Math.max(Math.floor(percentScrolled * 3), 0), Steps.length - 1);
+    if (newStep !== currentStep) {
+      setCurrentStep(newStep);
+    }
+
+    lastScrollPositionRef.current = window.scrollY;
+    isScrollingRef.current = true;
+
+    // Clear the scrolling flag after a short delay
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 50);
+
+  }, [currentStep, updateVideoTime, isVideoLoaded]);
+
+  const throttledHandleScroll = useCallback(
     throttle(() => {
-      const container = containerRef.current;
-
-      if (!container || !isVideoLoaded) return;
-
-      const { top, height } = container.getBoundingClientRect();
-      const percentScrolled = Math.max(0, Math.min(1, -top / (height - window.innerHeight)));
-
-      updateVideoTime(percentScrolled);
-
-      const newStep = Math.min(Math.max(Math.floor(percentScrolled * 3), 0), Steps.length - 1);
-      if (newStep !== currentStep) {
-        setCurrentStep(newStep);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
-
-      lastScrollPositionRef.current = window.scrollY;
-    }, 20), // Adjusted to 20ms for 50fps
-    [currentStep, isVideoLoaded, updateVideoTime]
+      animationFrameRef.current = requestAnimationFrame(handleScroll);
+    }, 100),
+    [handleScroll]
   );
 
+  const startVideoPlayback = useCallback(() => {
+    const video = videoRef.current;
+    if (video && isVideoLoaded) {
+      video.play().catch(error => {
+        console.error('Error playing video:', error);
+      });
+    }
+  }, [isVideoLoaded]);
+
   useEffect(() => {
-    const handleScrollListener = () => {
-      requestAnimationFrame(handleScroll);
-    };
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    window.addEventListener('touchmove', throttledHandleScroll, { passive: true });
 
-    const handleTouchMove = () => {
-      requestAnimationFrame(handleScroll);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVideoStatus('Started');
+            startVideoPlayback();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    window.addEventListener('scroll', handleScrollListener, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    if (stepsRef.current) {
+      observer.observe(stepsRef.current);
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScrollListener);
-      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('scroll', throttledHandleScroll);
+      window.removeEventListener('touchmove', throttledHandleScroll);
+      if (stepsRef.current) {
+        observer.unobserve(stepsRef.current);
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, [handleScroll]);
+  }, [throttledHandleScroll, startVideoPlayback]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
       const handleLoadedMetadata = () => {
+        console.log('Video metadata loaded');
         setIsVideoLoaded(true);
-        video.playbackRate = 0; // Ensure the video doesn't play on its own
-        console.log('Video duration:', video.duration);
+        setVideoStatus('Metadata loaded');
+        handleScroll();
       };
+
+      const handleTimeUpdate = () => {
+        if (!isScrollingRef.current) {
+          video.pause();
+        }
+      };
+
+      const handleError = (e: ErrorEvent) => {
+        console.error('Video error:', e);
+        setVideoStatus('Error');
+      };
+
       video.addEventListener('loadedmetadata', handleLoadedMetadata);
-      return () => video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.addEventListener('timeupdate', handleTimeUpdate);
+      video.addEventListener('error', handleError);
+
+      return () => {
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
+        video.removeEventListener('error', handleError);
+      };
     }
-  }, []);
+  }, [handleScroll]);
+
+  // Attempt to load the video if it hasn't loaded
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && !isVideoLoaded) {
+      video.load();
+    }
+  }, [isVideoLoaded]);
 
   return (
     <section ref={containerRef} className='relative h-[300vh] bg-gray-100'>
       <div className='sticky top-0 h-screen flex items-center justify-center bg-white'>
         <div className='h-[80svh] w-[90vw] sm:w-[85vw] mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start justify-between md:items-center'>
-          <div className='w-full md:w-1/2 aspect-square order-2 md:order-1'>
+          <div className='w-full md:w-1/2 aspect-square order-2 md:order-1 relative'>
             <video
               ref={videoRef}
               className='w-full h-full object-cover relative z-10'
@@ -109,12 +176,20 @@ const Learn: React.FC = () => {
               muted
               preload='auto'
               style={{ opacity: 0.99 }}
+              crossOrigin='anonymous'
+              poster="/arttoo-logo.png"
             >
               <source src={videoSrc} type='video/mp4' />
-              <p>Your browser does not support the HTML5 Video element.</p>
+              Your browser does not support the video tag.
             </video>
+            <div className='absolute top-0 left-0 bg-black bg-opacity-50 text-white p-2 z-20'>
+              Status: {videoStatus}<br />
+              Current Time: {videoRef.current?.currentTime.toFixed(2) || 'N/A'}<br />
+              Duration: {videoRef.current?.duration.toFixed(2) || 'N/A'}<br />
+              Is Loaded: {isVideoLoaded ? 'Yes' : 'No'}
+            </div>
           </div>
-          <div className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
+          <div ref={stepsRef} className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
               {Steps[currentStep] && (
                 <motion.div
@@ -142,6 +217,10 @@ const Learn: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* Add this link to test video accessibility */}
+      <a href={videoSrc} target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 bg-blue-500 text-white p-2 rounded">
+        Test Video Link
+      </a>
     </section>
   );
 };

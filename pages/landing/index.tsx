@@ -7,7 +7,7 @@ import Hero from './components/Hero';
 import Learn from './components/Learn';
 import Header from './components/Header';
 import { useScroll, useTransform } from 'framer-motion';
-import LazyLoadComponent from './components/LazyLoading';
+// import LazyLoadComponent from './components/LazyLoading';
 
 const LandingPage = () => {
   const main = useRef<HTMLElement>(null);
@@ -42,9 +42,9 @@ const LandingPage = () => {
       <Hero />
       <div ref={heroRef} className='flex flex-col gap-8 bg-white z-50'>
         <Artworks />
-        <LazyLoadComponent>
+       
           <Learn />
-        </LazyLoadComponent>
+   
         <About />
         <Footer />
       </div>
