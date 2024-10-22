@@ -1,25 +1,25 @@
 'use client';
 import FadeInUpwardAnimation from '@/components/FadeInUpwardAnimation';
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 type ArtworksProps = Record<string, never>;
 const Artworks = forwardRef<HTMLDivElement, ArtworksProps>((props, ref) => {
   const artworkRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (!artworkRef.current) return;
-      if (document.visibilityState === 'visible') {
-        artworkRef.current.play();
-      } else {
-        artworkRef.current.pause();
-      }
-    };
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (!artworkRef.current) return;
+  //     if (document.visibilityState === 'visible') {
+  //       artworkRef.current.play();
+  //     } else {
+  //       artworkRef.current.pause();
+  //     }
+  //   };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+  //   document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('visibilitychange', handleVisibilityChange);
+  //   };
+  // }, []);
   return (
     <section ref={ref} id='artworks' className='relative min-h-[100svh] md:min-h-[80vh] xl:h-auto'>
       <div className='flex justify-between flex-col lg:flex-row gap-4 pt-20 md:pt-24 lg:pt-32 max-w-screen-2xl w-[90vw] sm:w-[85vw] mx-auto'>
@@ -46,7 +46,8 @@ const Artworks = forwardRef<HTMLDivElement, ArtworksProps>((props, ref) => {
         poster='/sec_2II.png'
         className='w-full h-[70svh] md:h-[60svh] lg:h-[70vh] xl:h-auto object-cover lg:-mt-[120px] mt-[-80px] xl:-mt-[160px] xl:min-h-[980px]'
       >
-        <source src='/section2-highres.webm' type='video/webm' />
+        <source src='/section2-highres.webm' type="video/webm; codecs='vp8, vorbis'" />
+        <source src='/section2-highres.mp4' type='video/mp4' />
         Your browser does not support the video tag.
       </video>
     </section>
