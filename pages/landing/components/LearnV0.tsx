@@ -4,21 +4,27 @@ import React from 'react';
 const Steps = [
   {
     title: 'Explore',
-    image: '/sec_I.png',
+    poster: '/sec_I.png',
+    video: 'sequence_01.mp4',
+    videoWebm: 'sequence_01.webm',
     progress: { min: 0, max: 0.33 },
     description:
       "Browse a collection of iconic masterpieces carefully handpicked by our expert curators from Sotheby's and Christie's.",
   },
   {
     title: 'Invest',
-    image: '/sec_II.png',
+    poster: '/sec_II.png',
+    video: 'sequence_02.mp4',
+    videoWebm: 'sequence_02.webm',
     progress: { min: 0.33, max: 0.66 },
     description:
       'Start investing in fractional shares of legacy masterpieces with no auction house markups, no gallery markups, no hidden true-up fees.',
   },
   {
     title: 'Earn',
-    image: '/sec_lII.png',
+    poster: '/sec_lII.png',
+    video: 'sequence_03.mp4',
+    videoWebm: 'sequence_03.webm',
     progress: { min: 0.66, max: 1 },
     description:
       'Watch your investment grow in value through auction exits, rents from exhibitions in museums and galleries, loyalty from NFT recreations and consumer merchandise and many more.',
@@ -35,7 +41,18 @@ const Learn: React.FC = () => {
               index % 2 === 0 ? 'lg:order-first' : 'lg:order-last'
             }`}
           >
-            <Image width='600' height='600' className='object-contain' src={step.image} alt={step.title} />
+            <video
+              className='h-full w-full max-w-[600px] max-h-[600px] object-contain'
+              autoPlay
+              playsInline
+              muted
+              loop
+              preload='auto'
+            >
+              <source src={step.videoWebm} type="video/webm; codecs='vp8, vorbis'" />
+              <source src={step.video} type='video/mp4' />
+              <p>Your browser does not support the HTML5 Video element.</p>
+            </video>
           </div>
           <div
             className={`w-full lg:w-1/2 p-8 flex items-center justify-center order-first ${

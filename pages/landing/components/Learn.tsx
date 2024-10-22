@@ -248,7 +248,7 @@ const Learn = () => {
   return (
     <section ref={containerRef} className='w-[90vw] mx-auto sm:w-[85vw]'>
       <div className='flex flex-col md:flex-row'>
-        <div className=' h-[50rem] md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
+        <div className='h-[50rem] md:w-1/2 flex justify-end items-end md:justify-center md:items-center' ref={leftRef}>
           <video autoPlay ref={videoRef} muted className='w-full' preload='auto'>
             <source
               type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
