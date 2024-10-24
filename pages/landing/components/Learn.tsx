@@ -209,12 +209,7 @@ const Learn: React.FC = () => {
               <source src={videoSrc} type='video/mp4' />
               Your browser does not support the video tag.
             </video>
-            <div className='absolute top-0 left-0 bg-black bg-opacity-50 text-white p-2 z-20'>
-              Status: {videoStatus}<br />
-              Current Time: {videoRef.current?.currentTime.toFixed(2) || 'N/A'}<br />
-              Duration: {videoRef.current?.duration.toFixed(2) || 'N/A'}<br />
-              Is Loaded: {isVideoLoaded ? 'Yes' : 'No'}
-            </div>
+       
           </div>
           <div ref={stepsRef} className='flex flex-col w-full md:w-1/2 md:pl-8 order-1 md:order-2 pt-10 md:pt-0'>
             <AnimatePresence mode='wait'>
@@ -244,10 +239,7 @@ const Learn: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* Add this link to test video accessibility */}
-      <a href={videoSrc} target="_blank" rel="noopener noreferrer" className="absolute bottom-4 left-4 bg-blue-500 text-white p-2 rounded">
-        Test Video Link
-      </a>
+    
     </section>
   );
 };
